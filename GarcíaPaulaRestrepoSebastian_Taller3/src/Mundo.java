@@ -11,9 +11,15 @@ public class Mundo {
 		
 	}
 	
-	/*
-	 * 
-	 */
+	/**
+	*	Descripción	corta,	para	todos	los	métodos	(excepto	los	get/set)
+	*	
+	*	Descripción	completa,	para	los	métodos	no	triviales	(que	tienen	muchas	instrucciones)
+	*
+	*
+	*	@parametro tipo nombre_parametro			 Descripción
+	*	@retorno tipo Descripción
+	*/
 	public void cargarImagenes(){
 		
 	}
