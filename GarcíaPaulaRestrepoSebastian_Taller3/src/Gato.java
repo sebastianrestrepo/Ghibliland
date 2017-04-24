@@ -2,7 +2,6 @@ import processing.core.PApplet;
 
 public class Gato extends Criatura implements NEncontrable {
             
-	private int posX, posY, tam;
 	
 	/*
 	 *  Constructor de Gato 
@@ -27,7 +26,7 @@ public class Gato extends Criatura implements NEncontrable {
 	}
 
 	/*
-	 *  Método que no me acuerdo que llamará el método de calcular de distancia y bajo la condición de que este retorne true
+	 *  Método que llamará el método de calcular de distancia y bajo la condición de que este retorne true
 	 *  llamará al método huir
 	 *	@retorno void 
 	 */

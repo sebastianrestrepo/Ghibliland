@@ -2,8 +2,6 @@ import processing.core.PApplet;
 
 public class MiniTotoro extends Criatura implements BEncontrable {
 
-	private int posX, posY, tam;
-	
 	/*
 	 *  Constructor de MiniTotoro
 	 *  @parametro Mundo m
@@ -26,7 +24,7 @@ public class MiniTotoro extends Criatura implements BEncontrable {
 	}
 
 	/*
-	 *  Método que no me acuerdo que llamará el método de calcular de distancia y bajo la condición de que este retorne true
+	 *  Método que llamará el método de calcular de distancia y bajo la condición de que este retorne true
 	 *  llamará al método huir
 	 *	@retorno void 
 	 */
