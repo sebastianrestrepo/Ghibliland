@@ -1,17 +1,17 @@
 import processing.core.PApplet;
 
-public class Kodama extends Criatura implements BEncontrable {
+public class Duende extends Criatura implements NEncontrable {
 
 	private int posX, posY, tam;
 	
 	/*
-	 *  Constructor de Kodama
+	 *  Constructor de Duende 
 	 *  @parametro Mundo m
 	 *  @parametro int posX
 	 *	@parametro int posY
 	 *  @parametro int tam
 	 */
-	public Kodama(Mundo m, int posX, int posY, int tam) {
+	public Duende(Mundo m, int posX, int posY, int tam) {
 		super(m, posX, posY, tam);
 	}
 
@@ -21,6 +21,7 @@ public class Kodama extends Criatura implements BEncontrable {
 	 *	@retorno void 
 	 */
 	public void pintar(PApplet app) {
+		// TODO Auto-generated method stub
 
 	}
 
@@ -30,6 +31,7 @@ public class Kodama extends Criatura implements BEncontrable {
 	 *	@retorno void 
 	 */
 	public void encuentro() {
+		// TODO Auto-generated method stub
 
 	}
 

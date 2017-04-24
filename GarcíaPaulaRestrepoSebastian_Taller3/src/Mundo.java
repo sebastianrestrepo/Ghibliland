@@ -9,6 +9,10 @@ public class Mundo {
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
 
+	/*
+	 *  Constructor de Mundo 
+	 *  @parametro PApplet app
+	 */
 	public Mundo(PApplet app) {
 		this.app = app;
 	}

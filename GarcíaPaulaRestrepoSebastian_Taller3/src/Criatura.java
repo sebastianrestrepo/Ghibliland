@@ -10,7 +10,13 @@ public abstract class Criatura implements Runnable {
 	protected boolean vivo;
 	protected boolean huyendo;
 	
-
+	/*
+	 *  Constructor de Criatura 
+	 *  @parametro Mundo m
+	 *  @parametro int posX
+	 *	@parametro int posY
+	 *  @parametro int tam
+	 */
 	public Criatura(Mundo m, int posX, int posY, int tam){
 		this.m = m;
 		this.posX = posX;
@@ -20,7 +26,7 @@ public abstract class Criatura implements Runnable {
 
 	/*
 	 *  Método que se encargará de pintar las secuencias de imagenes de los personajes 
-	 *  @parametro PApplet app	//
+	 *  @parametro PApplet app
 	 *	@retorno void 
 	 */
 	public abstract void pintar(PApplet app);
@@ -40,8 +46,8 @@ public abstract class Criatura implements Runnable {
 	}
 	
 	/*
-	 *  Método que llamará el método de calcular de distancia y bajo la condición de que este retorne true
-	 *  aumente la variable de ritmo y haga que el hilo se ejecute más rápido para que el personaje huya,
+	 *  Método que al ser llamado aumente la variable de ritmo y haga que 
+	 *  el hilo se ejecute más rápido para que el personaje huya, 
 	 *  adicionalmente activará la variable huyendo a true. 
 	 *	@retorno void 
 	 */
@@ -50,7 +56,8 @@ public abstract class Criatura implements Runnable {
 	}
 	
 	/*
-	 *  Método que no me acuerdo
+	 *  Método que no me acuerdo que llamará el método de calcular de distancia y bajo la condición de que este retorne true
+	 *  llamará al método huir
 	 *	@retorno void 
 	 */
 	public abstract void encuentro();
