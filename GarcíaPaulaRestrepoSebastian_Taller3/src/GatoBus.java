@@ -2,11 +2,11 @@ import processing.core.PApplet;
 
 public class GatoBus {
 
-	public GatoBus(PApplet app, int posX, int posY){
+	public GatoBus(int posX, int posY, int tam){
 		
 	}
 	
-	public void pintar(){
+	public void pintar(PApplet app){
 		
 	}
 	

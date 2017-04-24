@@ -2,8 +2,10 @@ import processing.core.PApplet;
 
 public class Totoro extends Criatura implements BEncontrable {
 
-	public Totoro(int posX, int posY, int tam) {
-		super(posX, posY, tam);
+	private int posX, posY, tam;
+	
+	public Totoro(Mundo m, int posX, int posY, int tam) {
+		super(m, posX, posY, tam);
 		// TODO Auto-generated constructor stub
 	}
 

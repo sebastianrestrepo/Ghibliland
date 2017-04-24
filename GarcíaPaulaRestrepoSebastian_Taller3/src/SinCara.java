@@ -2,8 +2,10 @@ import processing.core.PApplet;
 
 public class SinCara extends Criatura implements NEncontrable {
 
-	public SinCara(int posX, int posY, int tam) {
-		super(posX, posY, tam);
+	private int posX, posY, tam;
+	
+	public SinCara(Mundo m, int posX, int posY, int tam) {
+		super(m, posX, posY, tam);
 		// TODO Auto-generated constructor stub
 	}
 

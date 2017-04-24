@@ -2,8 +2,10 @@ import processing.core.PApplet;
 
 public class Pelusa extends Criatura implements NEncontrable {
 
-	public Pelusa(int posX, int posY, int tam) {
-		super(posX, posY, tam);
+	private int posX, posY, tam;
+	
+	public Pelusa(Mundo m, int posX, int posY, int tam) {
+		super(m, posX, posY, tam);
 		// TODO Auto-generated constructor stub
 	}
 

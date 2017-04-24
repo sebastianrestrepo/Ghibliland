@@ -1,9 +1,11 @@
 import processing.core.PApplet;
 
 public class Gato extends Criatura implements NEncontrable {
-
-	public Gato(int posX, int posY, int tam) {
-		super(posX, posY, tam);
+            
+	private int posX, posY, tam;
+	
+	public Gato(Mundo m, int posX, int posY, int tam) {
+		super(m, posX, posY, tam);
 		// TODO Auto-generated constructor stub
 	}
 
