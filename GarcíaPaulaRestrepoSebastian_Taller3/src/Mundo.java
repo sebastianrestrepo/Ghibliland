@@ -6,7 +6,9 @@ public class Mundo {
 
 	private PApplet app;
 	private int pantallas;
-	private PImage fondoInicio, instrucciones;
+	private PImage fondoInicio, instrucciones, fondoEsc, pasto;
+	private PImage[] enterUno, enterDos;
+	private int numActual;
 	private ArrayList<Criatura> criaturas;
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
@@ -27,8 +29,48 @@ public class Mundo {
 	 * @retorno void
 	 */
 	public void cargarImagenes() {
-		fondoInicio = app.loadImage("fondoInicio.png");
-		instrucciones = app.loadImage("instrucciones.png");
+		fondoInicio = app.loadImage("../data/fondoInicio.png");
+		instrucciones = app.loadImage("../data/instrucciones.png");
+		fondoEsc = app.loadImage("../data/escenario/fondo.png");
+		pasto = app.loadImage("../data/escenario/pasto.png");
+		cargarEnterUno();
+		cargarEnterDos();
+	}
+
+	public void cargarEnterUno() {
+		enterUno = new PImage[23];
+		for (int i = 0; i < enterUno.length; i++) {
+			enterUno[i] = app.loadImage("../data/enterUno/ENTERUNO_" + i + ".png");
+		}
+	}
+
+	public void pintarEnterUno() {
+		//System.out.println(numActual);
+		app.image(enterUno[numActual], app.width / 2, app.height / 2);
+		if (app.frameCount % 5 == 0) {
+			numActual++;
+			if (numActual >= enterUno.length) {
+				numActual = 0;
+			}
+		}
+	}
+	
+	public void cargarEnterDos() {
+		enterDos = new PImage[23];
+		for (int i = 0; i < enterUno.length; i++) {
+			enterDos[i] = app.loadImage("../data/enterDos/ENTERDOS_" + i + ".png");
+		}
+	}
+	
+	public void pintarEnterDos() {
+		//System.out.println(numActual);
+		app.image(enterDos[numActual], app.width / 2, 454);
+		if (app.frameCount % 5 == 0) {
+			numActual++;
+			if (numActual >= enterDos.length) {
+				numActual = 0;
+			}
+		}
 	}
 
 	/*
@@ -68,17 +110,16 @@ public class Mundo {
 	public void teclas() {
 		switch (pantallas) {
 		case 0:
-			if(app.keyCode == app.ENTER){
+			if (app.keyCode == app.ENTER) {
 				pantallas = 1;
 			}
 			break;
 		case 1:
-			if(app.keyCode == app.ENTER){
+			if (app.keyCode == app.ENTER) {
 				pantallas = 2;
 			}
 			break;
 		case 2:
-			app.background(0);
 			break;
 		}
 	}
@@ -91,14 +132,17 @@ public class Mundo {
 	public void pantallas() {
 		switch (pantallas) {
 		case 0:
-			app.image(fondoInicio, app.width/2, app.height/2);
+			app.image(fondoInicio, app.width / 2, app.height / 2);
+			pintarEnterUno();
 			break;
 		case 1:
-			app.image(fondoInicio, app.width/2, app.height/2);
-			app.image(instrucciones, app.width/2, app.height/2);
+			app.image(fondoInicio, app.width / 2, app.height / 2);
+			app.image(instrucciones, app.width / 2, app.height / 2);
+			pintarEnterDos();
 			break;
 		case 2:
-			app.background(0);
+			app.image(fondoEsc, app.width / 2, app.height / 2);
+			app.image(pasto, app.width / 2, app.height / 2);
 			break;
 		}
 	}

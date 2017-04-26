@@ -37,5 +37,9 @@ public class MainAppTaller3 extends PApplet {
 	public void keyReleased() {
 		m.teclas();
 	}
+	
+	public void mouseReleased(){
+		println(mouseX, mouseY);
+	}
 
 }
