@@ -15,7 +15,6 @@ public class Mundo {
 
 	/*
 	 * Constructor de Mundo
-	 * 
 	 * @parametro PApplet app
 	 */
 	public Mundo(PApplet app) {
@@ -24,8 +23,7 @@ public class Mundo {
 	}
 
 	/*
-	 * Método que se encargará de cargar las imagenes de las pantallas
-	 * 
+	 * Metodo que se encargara de cargar las imagenes de las pantalla
 	 * @retorno void
 	 */
 	public void cargarImagenes() {
@@ -45,7 +43,6 @@ public class Mundo {
 	}
 
 	public void pintarEnterUno() {
-		//System.out.println(numActual);
 		app.image(enterUno[numActual], app.width / 2, app.height / 2);
 		if (app.frameCount % 5 == 0) {
 			numActual++;
@@ -63,7 +60,6 @@ public class Mundo {
 	}
 	
 	public void pintarEnterDos() {
-		//System.out.println(numActual);
 		app.image(enterDos[numActual], app.width / 2, 454);
 		if (app.frameCount % 5 == 0) {
 			numActual++;
@@ -74,7 +70,7 @@ public class Mundo {
 	}
 
 	/*
-	 * Método que se encargará de iniciar todas las variables y listas
+	 * Metodo que se encargara de iniciar todas las variables y listas
 	 * 
 	 * @retorno void
 	 */
