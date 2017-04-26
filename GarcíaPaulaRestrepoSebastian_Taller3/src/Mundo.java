@@ -36,7 +36,7 @@ public class Mundo {
 		cargarEnterUno();
 		cargarEnterDos();
 	}
-
+//xd
 	public void cargarEnterUno() {
 		enterUno = new PImage[23];
 		for (int i = 0; i < enterUno.length; i++) {
