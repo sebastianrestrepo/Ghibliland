@@ -7,7 +7,7 @@ public class Mundo {
 	private PApplet app;
 	private int pantallas;
 	private PImage fondoInicio, instrucciones, fondoEsc, pasto;
-	private PImage[] enterUno, enterDos;
+	private PImage[] enterUno, enterDos, luces;
 	private int numActual;
 	private ArrayList<Criatura> criaturas;
 	private ArrayList<Comida> comida;
@@ -20,6 +20,7 @@ public class Mundo {
 	public Mundo(PApplet app) {
 		this.app = app;
 		app.imageMode(app.CENTER);
+		cargarLuces();
 	}
 
 	/*
@@ -33,6 +34,7 @@ public class Mundo {
 		pasto = app.loadImage("../data/escenario/pasto.png");
 		cargarEnterUno();
 		cargarEnterDos();
+		cargarLuces();
 	}
 //xd
 	public void cargarEnterUno() {
@@ -64,6 +66,23 @@ public class Mundo {
 		if (app.frameCount % 5 == 0) {
 			numActual++;
 			if (numActual >= enterDos.length) {
+				numActual = 0;
+			}
+		}
+	}
+	
+	public void cargarLuces() {
+		luces = new PImage[15];
+		for (int i = 0; i < luces.length; i++) {
+			luces[i] = app.loadImage("../data/Luces/Luces_" + i + ".png");
+		}
+	}
+
+	public void pintarLuces() {
+		app.image(luces[numActual],app.width / 2, app.height / 2);
+		if (app.frameCount % 5 == 0) {
+			numActual++;
+			if (numActual >= luces.length) {
 				numActual = 0;
 			}
 		}
@@ -139,6 +158,7 @@ public class Mundo {
 		case 2:
 			app.image(fondoEsc, app.width / 2, app.height / 2);
 			app.image(pasto, app.width / 2, app.height / 2);
+			pintarLuces();
 			break;
 		}
 	}
