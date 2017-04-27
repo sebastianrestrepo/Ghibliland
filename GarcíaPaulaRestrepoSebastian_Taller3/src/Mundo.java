@@ -15,86 +15,14 @@ public class Mundo {
 
 	/*
 	 * Constructor de Mundo
+	 * 
 	 * @parametro PApplet app
 	 */
 	public Mundo(PApplet app) {
 		this.app = app;
 		app.imageMode(app.CENTER);
-		cargarLuces();
-	}
-
-	/*
-	 * Metodo que se encargara de cargar las imagenes de las pantalla
-	 * @retorno void
-	 */
-	public void cargarImagenes() {
-		fondoInicio = app.loadImage("../data/fondoInicio.png");
-		instrucciones = app.loadImage("../data/instrucciones.png");
-		fondoEsc = app.loadImage("../data/escenario/fondo.png");
-		pasto = app.loadImage("../data/escenario/pasto.png");
-		cargarEnterUno();
-		cargarEnterDos();
-		cargarLuces();
-	}
-//xd
-	public void cargarEnterUno() {
-		enterUno = new PImage[23];
-		for (int i = 0; i < enterUno.length; i++) {
-			enterUno[i] = app.loadImage("../data/enterUno/ENTERUNO_" + i + ".png");
-		}
-	}
-
-	public void pintarEnterUno() {
-		app.image(enterUno[numActual], app.width / 2, app.height / 2);
-		if (app.frameCount % 5 == 0) {
-			numActual++;
-			if (numActual >= enterUno.length) {
-				numActual = 0;
-			}
-		}
-	}
-	
-	public void cargarEnterDos() {
-		enterDos = new PImage[23];
-		for (int i = 0; i < enterUno.length; i++) {
-			enterDos[i] = app.loadImage("../data/enterDos/ENTERDOS_" + i + ".png");
-		}
-	}
-	
-	public void pintarEnterDos() {
-		app.image(enterDos[numActual], app.width / 2, 454);
-		if (app.frameCount % 5 == 0) {
-			numActual++;
-			if (numActual >= enterDos.length) {
-				numActual = 0;
-			}
-		}
-	}
-	
-	public void cargarLuces() {
-		luces = new PImage[15];
-		for (int i = 0; i < luces.length; i++) {
-			luces[i] = app.loadImage("../data/Luces/Luces_" + i + ".png");
-		}
-	}
-
-	public void pintarLuces() {
-		app.image(luces[numLuces],app.width / 2, app.height / 2);
-		if (app.frameCount % 5 == 0) {
-			numLuces++;
-			if (numLuces >= luces.length) {
-				numLuces = 0;
-			}
-		}
-	}
-
-	/*
-	 * Metodo que se encargara de iniciar todas las variables y listas
-	 * 
-	 * @retorno void
-	 */
-	public void iniciarVariables() {
-
+		inicializarVariables();
+		
 	}
 
 	/*
@@ -107,6 +35,85 @@ public class Mundo {
 	}
 
 	/*
+	 * Metodo que se encargara de cargar las imagenes de las pantalla
+	 * 
+	 * @retorno void
+	 */
+	public void cargarImagenes() {
+		fondoInicio = app.loadImage("../data/fondoInicio.png");
+		instrucciones = app.loadImage("../data/instrucciones.png");
+		fondoEsc = app.loadImage("../data/escenario/fondo.png");
+		pasto = app.loadImage("../data/escenario/pasto.png");
+		cargarEnterUno();
+		cargarEnterDos();
+		cargarLuces();
+		gatobus.cargarCriatura(app);
+	}
+
+
+
+	/*
+	 * Metodo que se encargara de iniciar todas las variables y listas
+	 * 
+	 * @retorno void
+	 */
+	public void inicializarVariables() {
+		gatobus = new GatoBus(0, app.height / 2, 50);
+	}
+
+	// xd
+	public void cargarEnterUno() {
+		enterUno = new PImage[23];
+		for (int i = 0; i < enterUno.length; i++) {
+			enterUno[i] = app.loadImage("../data/enterUno/ENTERUNO_" + i + ".png");
+		}
+	}
+
+	public void cargarEnterDos() {
+		enterDos = new PImage[23];
+		for (int i = 0; i < enterUno.length; i++) {
+			enterDos[i] = app.loadImage("../data/enterDos/ENTERDOS_" + i + ".png");
+		}
+	}
+
+	public void cargarLuces() {
+		luces = new PImage[15];
+		for (int i = 0; i < luces.length; i++) {
+			luces[i] = app.loadImage("../data/Luces/Luces_" + i + ".png");
+		}
+	}
+
+	public void pintarLuces() {
+		app.image(luces[numLuces], app.width / 2, app.height / 2);
+		if (app.frameCount % 5 == 0) {
+			numLuces++;
+			if (numLuces >= luces.length) {
+				numLuces = 0;
+			}
+		}
+	}
+
+	public void pintarEnterUno() {
+		app.image(enterUno[numActual], app.width / 2, app.height / 2);
+		if (app.frameCount % 5 == 0) {
+			numActual++;
+			if (numActual >= enterUno.length) {
+				numActual = 0;
+			}
+		}
+	}
+
+	public void pintarEnterDos() {
+		app.image(enterDos[numActual], app.width / 2, 454);
+		if (app.frameCount % 5 == 0) {
+			numActual++;
+			if (numActual >= enterDos.length) {
+				numActual = 0;
+			}
+		}
+	}
+
+	/*
 	 * Método que se encargará de llamar a todos los pintar que vienen de las
 	 * otras clases y que será llamado en el Ejectuable en el draw
 	 * 
@@ -114,29 +121,6 @@ public class Mundo {
 	 */
 	public void pintar() {
 		pantallas();
-	}
-
-	/*
-	 * Método que se encargará de los eventos del teclado otras clases y que
-	 * será llamado en el Ejectuable en el keyReleased
-	 * 
-	 * @retorno void
-	 */
-	public void teclas() {
-		switch (pantallas) {
-		case 0:
-			if (app.keyCode == app.ENTER) {
-				pantallas = 1;
-			}
-			break;
-		case 1:
-			if (app.keyCode == app.ENTER) {
-				pantallas = 2;
-			}
-			break;
-		case 2:
-			break;
-		}
 	}
 
 	/*
@@ -159,6 +143,34 @@ public class Mundo {
 			app.image(fondoEsc, app.width / 2, app.height / 2);
 			app.image(pasto, app.width / 2, app.height / 2);
 			pintarLuces();
+			pintarGato();
+			break;
+		}
+	}
+
+	public void pintarGato() {
+		gatobus.pintar(app);
+	}
+
+	/*
+	 * Método que se encargará de los eventos del teclado otras clases y que
+	 * será llamado en el Ejectuable en el keyReleased
+	 * 
+	 * @retorno void
+	 */
+	public void teclas() {
+		switch (pantallas) {
+		case 0:
+			if (app.keyCode == app.ENTER) {
+				pantallas = 1;
+			}
+			break;
+		case 1:
+			if (app.keyCode == app.ENTER) {
+				pantallas = 2;
+			}
+			break;
+		case 2:
 			break;
 		}
 	}
