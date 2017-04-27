@@ -30,7 +30,7 @@ public class MainAppTaller3 extends PApplet {
 
 	@Override
 	public void draw() {
-		m.pantallas();
+		m.pintar();
 	}
 
 	@Override

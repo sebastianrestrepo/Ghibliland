@@ -113,7 +113,7 @@ public class Mundo {
 	 * @retorno void
 	 */
 	public void pintar() {
-
+		pantallas();
 	}
 
 	/*
