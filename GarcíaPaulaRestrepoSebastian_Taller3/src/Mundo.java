@@ -73,7 +73,7 @@ public class Mundo {
 	
 	public void cargarLuces() {
 		luces = new PImage[15];
-		for (int i = 0; i < luces.length; i++) {
+		for (int i = 0; i < luces.length-1; i++) {
 			luces[i] = app.loadImage("../data/Luces/Luces_" + i + ".png");
 		}
 	}
