@@ -8,7 +8,7 @@ public class Mundo {
 	private int pantallas;
 	private PImage fondoInicio, instrucciones, fondoEsc, pasto;
 	private PImage[] enterUno, enterDos, luces;
-	private int numActual;
+	private int numActual, numLuces;
 	private ArrayList<Criatura> criaturas;
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
@@ -73,17 +73,17 @@ public class Mundo {
 	
 	public void cargarLuces() {
 		luces = new PImage[15];
-		for (int i = 0; i < luces.length-1; i++) {
+		for (int i = 0; i < luces.length; i++) {
 			luces[i] = app.loadImage("../data/Luces/Luces_" + i + ".png");
 		}
 	}
 
 	public void pintarLuces() {
-		app.image(luces[numActual],app.width / 2, app.height / 2);
+		app.image(luces[numLuces],app.width / 2, app.height / 2);
 		if (app.frameCount % 5 == 0) {
-			numActual++;
-			if (numActual >= luces.length) {
-				numActual = 0;
+			numLuces++;
+			if (numLuces >= luces.length) {
+				numLuces = 0;
 			}
 		}
 	}
