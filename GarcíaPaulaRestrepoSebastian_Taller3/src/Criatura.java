@@ -27,7 +27,6 @@ public abstract class Criatura implements Runnable {
 		this.posY = posY;
 		this.tam = tam;
 		vivo = true;
-		estado = 0;
 		ritmo = 66;
 	}
 

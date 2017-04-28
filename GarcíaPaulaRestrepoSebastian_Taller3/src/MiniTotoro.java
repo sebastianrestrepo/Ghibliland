@@ -10,8 +10,12 @@ public class MiniTotoro extends Criatura implements BEncontrable {
 	 *	@parametro int posY
 	 *  @parametro int tam
 	 */
+	
+	private int numFrameCuatro;
+	
 	public MiniTotoro(Mundo m, int posX, int posY, int tam) {
 		super(m, posX, posY, tam);
+		numFrameCuatro = 4;
 	}
 
 	public void cargar(PApplet app) {
@@ -41,11 +45,11 @@ public class MiniTotoro extends Criatura implements BEncontrable {
 	@Override
 	public void calculo() {
 		switch (estado) {
-		
+
 		case 0:
-			numFrame++;
-			if (numFrame >= 15) {
-				numFrame = 4;
+			numFrameCuatro++;
+			if (numFrameCuatro >= 15) {
+				numFrameCuatro = 4;
 			}
 			break;
 		case 1:
@@ -61,9 +65,9 @@ public class MiniTotoro extends Criatura implements BEncontrable {
 			}
 			break;
 		case 3:
-			numFrame++;
-			if (numFrame >= 15) {
-				numFrame = 4;
+			numFrameCuatro++;
+			if (numFrameCuatro >= 15) {
+				numFrameCuatro = 4;
 			}
 			break;
 		}
@@ -78,7 +82,7 @@ public class MiniTotoro extends Criatura implements BEncontrable {
 		this.app = app;
 		switch (estado) {
 		case 0:
-			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width, criaturaFrontal[numFrame].height);
+			app.image(criaturaFrontal[numFrameCuatro], posX, posY, criaturaFrontal[numFrameCuatro].width, criaturaFrontal[numFrameCuatro].height);
 			break;
 		case 1:
 			app.image(criaturaDer[numFrame], posX, posY, criaturaDer[numFrame].width, criaturaDer[numFrame].height);
@@ -87,7 +91,7 @@ public class MiniTotoro extends Criatura implements BEncontrable {
 			app.image(criaturaIzq[numFrame], posX, posY, criaturaIzq[numFrame].width, criaturaIzq[numFrame].height);
 			break;
 		case 3:
-			app.image(criaturaPosterior[numFrame], posX, posY, criaturaPosterior[numFrame].width, criaturaPosterior[numFrame].height);
+			app.image(criaturaPosterior[numFrameCuatro], posX, posY, criaturaPosterior[numFrameCuatro].width, criaturaPosterior[numFrameCuatro].height);
 			break;
 		}
 	

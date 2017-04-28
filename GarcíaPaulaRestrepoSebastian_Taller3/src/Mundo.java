@@ -247,8 +247,8 @@ public class Mundo {
 			pintarLuces();
 			// pintarGato();
 			pintarComida();
-			pintarCriaturas();
 			cambioEstado();
+			pintarCriaturas();
 			devuelvis();
 			break;
 		}
