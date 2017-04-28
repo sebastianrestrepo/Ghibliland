@@ -41,7 +41,6 @@ public abstract class Criatura implements Runnable {
 			try {
 				calculo();
 				mover();
-				devuelvis();
 				Thread.sleep(ritmo);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -143,28 +142,7 @@ public abstract class Criatura implements Runnable {
 	 * @retorno void
 	 */
 	public void devuelvis() {
-		switch (estado) {
-		case 0:
-			if (posY >= 600) {
-				estado = 3;
-			}
-			break;
-		case 1:
-			if (posX >= 600) {
-				estado = 2;
-			}
-			break;
-		case 2:
-			if (posX <= 0) {
-				estado = 2;
-			}
-			break;
-		case 3:
-			if (posY <= 0) {
-				estado = 0;
-			}
-			break;
-		}
+
 	}
 
 	/*

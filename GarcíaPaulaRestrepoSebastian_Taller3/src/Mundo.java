@@ -6,6 +6,7 @@ public class Mundo {
 
 	private PApplet app;
 	private int pantallas;
+	private int equipoNegro, equipoBlanco;
 	private PImage fondoInicio, instrucciones, fondoEsc, pasto;
 	private PImage[] enterUno, enterDos, luces;
 	private int numActual, numLuces;
@@ -62,6 +63,18 @@ public class Mundo {
 		for (int i = 0; i < 15; i++) {
 			comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30 + Math.random() * 560),
 					(int) (20 + Math.random() * 40)));
+		}
+	}
+	
+	public void anadirEquipoNegro(){
+		equipoNegro = (int) (1+Math.random()+2);
+		switch(equipoNegro){
+		case 1:
+			criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 150));
+			break;
+		case 2:
+			criaturas.add(new Duende(this, app.width / 2 - 50, app.height / 4, 30));
+			break;
 		}
 	}
 
@@ -249,6 +262,10 @@ public class Mundo {
 			}
 			break;
 		case 2:
+			if (app.key == 'N' ) {
+				iniciarHilos();
+				pantallas = 2;
+			}
 			break;
 		}
 	}
