@@ -16,13 +16,58 @@ public class Totoro extends Criatura implements BEncontrable {
 	}
 
 	public void cargar(PApplet app) {
-		
+		this.app= app;
+		//Frontal
+		criaturaFrontal = new PImage[14];
+		for (int i = 0; i < criaturaFrontal.length; i++) {
+			criaturaFrontal[i] = app.loadImage("../data/personajes/Totoro/TotoFrente/TotoF_" + i + ".png");
+		}
+		//Izquierda
+		criaturaIzq = new PImage[14];
+		for (int i = 0; i < criaturaIzq.length; i++) {
+			criaturaIzq[i] = app.loadImage("../data/personajes/Totoro/TotoroIz/TotoroIz_" + i + ".png");
+		}
+		//Derecha
+		criaturaDer = new PImage[14];
+		for (int i = 0; i < criaturaDer.length; i++) {
+			criaturaDer[i] = app.loadImage("../data/personajes/Totoro/TotoroDe/TotoroDe_" + i + ".png");
+		}
+		//Posterior
+		criaturaPosterior = new PImage[14];
+		for (int i = 0; i < criaturaPosterior.length; i++) {
+			criaturaPosterior[i] = app.loadImage("../data/personajes/Totoro/TotoroEs/TotoroEs_" + i + ".png");
+		}
 	}
 	
 	@Override
 	public void calculo() {
-		// TODO Auto-generated method stub
-		
+		switch (estado) {
+		case 0:
+			numFrame++;
+			if (numFrame >= 14) {
+				numFrame = 0;
+			}
+			break;
+		case 1:
+			numFrame++;
+			if (numFrame >= 14) {
+				numFrame = 0;
+			}
+			break;
+		case 2:
+			numFrame++;
+			if (numFrame >= 14) {
+				numFrame = 0;
+			}
+			break;
+		case 3:
+			numFrame = 0;
+			numFrame++;
+			if (numFrame >= 14) {
+				numFrame = 0;
+			}
+			break;
+		}
 	}
 	
 	/*
@@ -31,7 +76,22 @@ public class Totoro extends Criatura implements BEncontrable {
 	 *	@retorno void 
 	 */
 	public void pintar(PApplet app) {
-
+		this.app = app;
+		switch (estado) {
+		case 0:
+			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width, criaturaFrontal[numFrame].height);
+			break;
+		case 1:
+			app.image(criaturaDer[numFrame], posX, posY, criaturaDer[numFrame].width, criaturaDer[numFrame].height);
+			break;
+		case 2:
+			app.image(criaturaIzq[numFrame], posX, posY, criaturaIzq[numFrame].width, criaturaIzq[numFrame].height);
+			break;
+		case 3:
+			app.image(criaturaPosterior[numFrame], posX, posY, criaturaPosterior[numFrame].width, criaturaPosterior[numFrame].height);
+			break;
+		}
+	
 	}
 
 	/*
