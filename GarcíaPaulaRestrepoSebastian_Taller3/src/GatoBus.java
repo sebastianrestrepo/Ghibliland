@@ -17,6 +17,7 @@ public class GatoBus {
 		this.x = posX;
 		this.y = posY;
 	}
+	
 	public void cargarCriatura(PApplet app) {
 		this.app = app;
 		criatura = new PImage[25];

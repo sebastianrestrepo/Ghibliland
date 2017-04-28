@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Duende extends Criatura implements NEncontrable {
 	
@@ -13,6 +14,16 @@ public class Duende extends Criatura implements NEncontrable {
 		super(m, posX, posY, tam);
 	}
 
+	public void cargar(PApplet app) {
+
+	}
+	
+	@Override
+	public void calculo() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	/*
 	 *  Método que se encargará de pintar las secuencias de imagenes de los personajes 
 	 *  @parametro PApplet app

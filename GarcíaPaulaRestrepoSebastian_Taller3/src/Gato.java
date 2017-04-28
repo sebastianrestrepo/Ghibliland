@@ -15,6 +15,16 @@ public class Gato extends Criatura implements NEncontrable {
 		// TODO Auto-generated constructor stub
 	}
 
+	public void cargar(PApplet app) {
+
+	}
+	
+	@Override
+	public void calculo() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	/*
 	 *  Método que se encargará de pintar las secuencias de imagenes de los personajes 
 	 *  @parametro PApplet app

@@ -10,6 +10,7 @@ public class Mundo {
 	private PImage[] enterUno, enterDos, luces;
 	private int numActual, numLuces;
 	private ArrayList<Criatura> criaturas;
+	private ArrayList<Thread> capsulas; //ArrayList para encapsular los hilos de las criaturas
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
 
@@ -21,20 +22,43 @@ public class Mundo {
 		this.app = app;
 		app.imageMode(app.CENTER);
 		inicializarVariables();
-		
+		agregarCriaturasInicio();
+		iniciarHilos();
 	}
 
+	/*
+	 * Metodo que se encargara de iniciar todas las variables y listas
+	 * @retorno void
+	 */
+	public void inicializarVariables() {
+		criaturas = new ArrayList<Criatura>();
+		gatobus = new GatoBus(0, app.height / 2, 50);
+		capsulas = new ArrayList<Thread>();
+	}
+	
+	/*
+	 * Metodo que se encargara de iniciar todas las variables y listas
+	 * @retorno void
+	 */
+	public void agregarCriaturasInicio() {
+			criaturas.add(new SinCara(this, app.width/2, 10, 150));
+		for (int i = 0; i < criaturas.size(); i++) {
+			capsulas.add(new Thread(criaturas.get(i)));
+		}
+	}
+	
 	/*
 	 * Método que se encargará de iniciar y encapsular los Hilos
 	 * @retorno void
 	 */
 	public void iniciarHilos() {
-
+		for (int i = 0; i < capsulas.size(); i++) {
+			capsulas.get(i).start();
+		}
 	}
 
 	/*
 	 * Metodo que se encargara de cargar las imagenes de las pantalla
-	 * 
 	 * @retorno void
 	 */
 	public void cargarImagenes() {
@@ -45,21 +69,16 @@ public class Mundo {
 		cargarEnterUno();
 		cargarEnterDos();
 		cargarLuces();
+		cargarCriaturas();
 		gatobus.cargarCriatura(app);
 	}
-
-
-
-	/*
-	 * Metodo que se encargara de iniciar todas las variables y listas
-	 * 
-	 * @retorno void
-	 */
-	public void inicializarVariables() {
-		gatobus = new GatoBus(0, app.height / 2, 50);
+	
+	public void cargarCriaturas(){
+		for (int i = 0; i < criaturas.size(); i++) {
+			criaturas.get(i).cargar(app);
+		}
 	}
 
-	// xd
 	public void cargarEnterUno() {
 		enterUno = new PImage[23];
 		for (int i = 0; i < enterUno.length; i++) {
@@ -110,6 +129,12 @@ public class Mundo {
 			}
 		}
 	}
+	
+	public void pintarCriaturas(){
+		for (int i = 0; i < criaturas.size(); i++) {
+			criaturas.get(i).pintar(app);
+		}
+	}
 
 	/*
 	 * Método que se encargará de llamar a todos los pintar que vienen de las
@@ -140,6 +165,7 @@ public class Mundo {
 			app.image(pasto, app.width / 2, app.height / 2);
 			pintarLuces();
 			pintarGato();
+			pintarCriaturas();
 			break;
 		}
 	}
