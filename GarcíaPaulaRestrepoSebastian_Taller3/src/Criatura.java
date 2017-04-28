@@ -41,6 +41,7 @@ public abstract class Criatura implements Runnable {
 			try {
 				calculo();
 				mover();
+				devuelvis();
 				Thread.sleep(ritmo);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -78,30 +79,32 @@ public abstract class Criatura implements Runnable {
 
 	/*
 	 * Método que contendrá un switch asociado a un número random que definirá
-	 * movimientos en cuatro direcciones difentes con base al random estado.
-	 * Se llamará en el hilo (run)
+	 * movimientos en cuatro direcciones difentes con base al random estado. Se
+	 * llamará en el hilo (run)
 	 * 
 	 * @retorno void
 	 */
 	public void mover() {
 		switch (estado) {
 		case 0:
-			posY+=2;
+			posY += 2;
 			break;
 		case 1:
-			posX+=2;
+			posX += 2;
 			break;
 		case 2:
-			posX-=2;
+			posX -= 2;
 			break;
 		case 3:
-			posY-=2;
+			posY -= 2;
 			break;
 		}
 	}
 
 	/*
-	 * La variable entera 'estado' cambia cada cierto tiempo definido por el frameCount
+	 * La variable entera 'estado' cambia cada cierto tiempo definido por el
+	 * frameCount
+	 * 
 	 * @retorno void
 	 */
 	public void cambioEstado(PApplet app) {
@@ -140,7 +143,28 @@ public abstract class Criatura implements Runnable {
 	 * @retorno void
 	 */
 	public void devuelvis() {
-
+		switch (estado) {
+		case 0:
+			if (posY >= 600) {
+				estado = 3;
+			}
+			break;
+		case 1:
+			if (posX >= 600) {
+				estado = 2;
+			}
+			break;
+		case 2:
+			if (posX <= 0) {
+				estado = 2;
+			}
+			break;
+		case 3:
+			if (posY <= 0) {
+				estado = 0;
+			}
+			break;
+		}
 	}
 
 	/*
@@ -165,5 +189,5 @@ public abstract class Criatura implements Runnable {
 		return true;
 	}
 
-	//FINAL DE LA CLASE CRIATURA
+	// FINAL DE LA CLASE CRIATURA
 }

@@ -72,7 +72,7 @@ public class SinCara extends Criatura implements NEncontrable {
 		case 3:
 			numFrame = 0;
 			numFrame++;
-			if (numFrame >= 15) {
+			if (numFrame >= 14) {
 				numFrame = 0;
 			}
 			break;

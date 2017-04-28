@@ -24,10 +24,9 @@ public class Mundo {
 		this.app = app;
 		app.imageMode(app.CENTER);
 		inicializarVariables();
-		agregarCriaturasInicio();
-		iniciarHilos();
 		cargarComida();
 		anadirComidaInicial();
+		agregarCriaturasInicio();
 	}
 
 	/*
@@ -245,6 +244,7 @@ public class Mundo {
 			break;
 		case 1:
 			if (app.keyCode == app.ENTER) {
+				iniciarHilos();
 				pantallas = 2;
 			}
 			break;
