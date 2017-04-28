@@ -56,7 +56,9 @@ public class Mundo {
 	}
 
 	/*
-	 * Metodo que se encargara de añadir la comida que estará incialmene en el lienzo
+	 * Metodo que se encargara de añadir la comida que estará incialmene en el
+	 * lienzo
+	 * 
 	 * @retorno void
 	 */
 	public void anadirComidaInicial() {
@@ -65,16 +67,23 @@ public class Mundo {
 					(int) (20 + Math.random() * 40)));
 		}
 	}
-	
-	public void anadirEquipoNegro(){
-		equipoNegro = (int) (1+Math.random()+2);
-		switch(equipoNegro){
+
+	public void anadirEquipoNegro() {
+		equipoNegro = (int) (1 + Math.random() * 2);
+		System.out.println(equipoNegro);
+		switch (equipoNegro) {
 		case 1:
 			criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 150));
 			break;
 		case 2:
 			criaturas.add(new Duende(this, app.width / 2 - 50, app.height / 4, 30));
 			break;
+		}
+		for (int i = 0; i < criaturas.size(); i++) {
+			capsulas.add(new Thread(criaturas.get(i)));
+			if (capsulas.get(i).getState() == Thread.State.NEW) {
+				capsulas.get(i).start();
+			}
 		}
 	}
 
@@ -109,6 +118,7 @@ public class Mundo {
 
 	/*
 	 * Metodo que se encargara de cargar a todos los tipos de criaturas
+	 * 
 	 * @retorno void
 	 */
 	public void cargarCriaturas() {
@@ -140,6 +150,7 @@ public class Mundo {
 
 	/*
 	 * Metodo que se encargara de cargar las imagenes de la comida
+	 * 
 	 * @retorno void
 	 */
 	public void cargarComida() {
@@ -150,6 +161,7 @@ public class Mundo {
 
 	/*
 	 * Metodo que se encargara de pintar la comida
+	 * 
 	 * @retorno void
 	 */
 	public void pintarComida() {
@@ -263,7 +275,7 @@ public class Mundo {
 			break;
 		case 2:
 			if (app.key == 'N' || app.key == 'n') {
-		
+				anadirEquipoNegro();
 			}
 			break;
 		}
