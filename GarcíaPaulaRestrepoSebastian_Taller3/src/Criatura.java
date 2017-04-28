@@ -74,8 +74,8 @@ public abstract class Criatura implements Runnable {
 
 	/*
 	 * Método que contendrá un switch asociado a un número random que definirá
-	 * movimientos en cuatro direcciones difentes con base al random estado.
-	 * Se llamará en el hilo (run)
+	 * movimientos en cuatro direcciones difentes con base al random estado. Se
+	 * llamará en el hilo (run)
 	 * 
 	 * @retorno void
 	 */
@@ -83,25 +83,27 @@ public abstract class Criatura implements Runnable {
 		switch (estado) {
 		//Hacia abajo
 		case 0:
-			posY+=2;
+			posY += 2;
 			break;
 			//Derecha
 		case 1:
-			posX+=2;
+			posX += 2;
 			break;
 			//Izquierda
 		case 2:
-			posX-=2;
+			posX -= 2;
 			break;
 			//Arriba
 		case 3:
-			posY-=2;
+			posY -= 2;
 			break;
 		}
 	}
 
 	/*
-	 * La variable entera 'estado' cambia cada cierto tiempo definido por el frameCount
+	 * La variable entera 'estado' cambia cada cierto tiempo definido por el
+	 * frameCount
+	 * 
 	 * @retorno void
 	 */
 	public void cambioEstado(PApplet app) {
@@ -184,5 +186,5 @@ public abstract class Criatura implements Runnable {
 		return true;
 	}
 
-	//FINAL DE LA CLASE CRIATURA
+	// FINAL DE LA CLASE CRIATURA
 }
