@@ -15,13 +15,57 @@ public class Duende extends Criatura implements NEncontrable {
 	}
 
 	public void cargar(PApplet app) {
-
+		this.app = app;
+		//Frontal
+		criaturaFrontal = new PImage[11];
+		for (int i = 0; i < criaturaFrontal.length; i++) {
+			criaturaFrontal[i] = app.loadImage("../data/personajes/duende/duendeFrontal/Duende_" + i + ".png");
+		}
+		//Izquierda
+		criaturaIzq = new PImage[11];
+		for (int i = 0; i < criaturaIzq.length; i++) {
+			criaturaIzq[i] = app.loadImage("../data/personajes/duende/duendeIzq/Duende izq_" + i + ".png");
+		}
+		//Derecha
+		criaturaDer = new PImage[11];
+		for (int i = 0; i < criaturaDer.length; i++) {
+			criaturaDer[i] = app.loadImage("../data/personajes/duende/duendeDer/Duende der_" + i + ".png");
+		}
+		//Posterior
+		criaturaPosterior = new PImage[11];
+		for (int i = 0; i < criaturaPosterior.length; i++) {
+			criaturaPosterior[i] = app.loadImage("../data/personajes/duende/duendePosterior/Duende posterior_" + i + ".png");
+		}
 	}
 	
 	@Override
 	public void calculo() {
-		// TODO Auto-generated method stub
-		
+		switch (estado) {
+		case 0:
+			numFrame++;
+			if (numFrame >= 11) {
+				numFrame = 0;
+			}
+			break;
+		case 1:
+			numFrame++;
+			if (numFrame >= 11) {
+				numFrame = 0;
+			}
+			break;
+		case 2:
+			numFrame++;
+			if (numFrame >= 11) {
+				numFrame = 0;
+			}
+			break;
+		case 3:
+			numFrame++;
+			if (numFrame >= 11) {
+				numFrame = 0;
+			}
+			break;
+		}
 	}
 	
 	/*
@@ -30,8 +74,21 @@ public class Duende extends Criatura implements NEncontrable {
 	 *	@retorno void 
 	 */
 	public void pintar(PApplet app) {
-		// TODO Auto-generated method stub
-
+		this.app = app;
+		switch (estado) {
+		case 0:
+			app.image(criaturaFrontal[numFrame], posX, posY, 60, 60);
+			break;
+		case 1:
+			app.image(criaturaDer[numFrame], posX, posY, 60, 60);
+			break;
+		case 2:
+			app.image(criaturaIzq[numFrame], posX, posY, 60, 60);
+			break;
+		case 3:
+			app.image(criaturaPosterior[numFrame], posX, posY, 60, 60);
+			break;
+		}
 	}
 
 	/*

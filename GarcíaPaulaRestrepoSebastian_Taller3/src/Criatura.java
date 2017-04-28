@@ -31,7 +31,8 @@ public abstract class Criatura implements Runnable {
 		this.posY = posY;
 		this.tam = tam;
 		vivo = true;
-		ritmo = 2000;
+		estado = 0;
+		ritmo = 66;
 	}
 
 	@Override
@@ -50,46 +51,64 @@ public abstract class Criatura implements Runnable {
 	}
 
 	/*
-	 * Método que se encargará de cargar las secuencias de imagenes de los personajes
+	 * Método que se encargará de cargar las secuencias de imagenes de los
+	 * personajes
+	 * 
 	 * @retorno void
 	 */
 	public abstract void cargar(PApplet app);
-	
+
 	/*
-	 * Método que se encargará de pintar las secuencias de imagenes de los personajes
+	 * Método que se encargará de pintar las secuencias de imagenes de los
+	 * personajes
+	 * 
 	 * @retorno void
 	 */
 	public abstract void calculo();
 
 	/*
-	 * Método que se encargará de pintar las secuencias de imagenes de los personajes
+	 * Método que se encargará de pintar las secuencias de imagenes de los
+	 * personajes
+	 * 
 	 * @parametro PApplet app
+	 * 
 	 * @retorno void
 	 */
 	public abstract void pintar(PApplet app);
 
 	/*
 	 * Método que contendrá un switch asociado a un número random que definirá
-	 * movimientos en cuatro direcciones difentes. Se llamará en el hilo (run)
+	 * movimientos en cuatro direcciones difentes con base al random estado.
+	 * Se llamará en el hilo (run)
 	 * 
 	 * @retorno void
 	 */
 	public void mover() {
-		estado = (int) (1+Math.random()*3);
-		System.out.println(estado);
 		switch (estado) {
 		case 0:
-			posY+=10;
+			posY+=2;
 			break;
 		case 1:
-			posX+=10;
+			posX+=2;
 			break;
 		case 2:
-			posX-=10;
+			posX-=2;
 			break;
 		case 3:
-			posY-=10;
+			posY-=2;
 			break;
+		}
+	}
+
+	/*
+	 * La variable entera 'estado' cambia cada cierto tiempo definido por el frameCount
+	 * @retorno void
+	 */
+	public void cambioEstado(PApplet app) {
+		this.app = app;
+		if (app.frameCount % 750 == 0) {
+			estado = (int) (1 + Math.random() * 3);
+			System.out.println(estado);
 		}
 	}
 
@@ -146,4 +165,5 @@ public abstract class Criatura implements Runnable {
 		return true;
 	}
 
+	//FINAL DE LA CLASE CRIATURA
 }

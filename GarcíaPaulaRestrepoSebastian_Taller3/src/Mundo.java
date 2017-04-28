@@ -10,12 +10,14 @@ public class Mundo {
 	private PImage[] enterUno, enterDos, luces;
 	private int numActual, numLuces;
 	private ArrayList<Criatura> criaturas;
-	private ArrayList<Thread> capsulas; //ArrayList para encapsular los hilos de las criaturas
+	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos
+										// de las criaturas
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
 
 	/*
 	 * Constructor de Mundo
+	 * 
 	 * @parametro PApplet app
 	 */
 	public Mundo(PApplet app) {
@@ -24,31 +26,49 @@ public class Mundo {
 		inicializarVariables();
 		agregarCriaturasInicio();
 		iniciarHilos();
+		cargarComida();
+		anadirComidaInicial();
 	}
 
 	/*
 	 * Metodo que se encargara de iniciar todas las variables y listas
+	 * 
 	 * @retorno void
 	 */
 	public void inicializarVariables() {
 		criaturas = new ArrayList<Criatura>();
+		comida = new ArrayList<Comida>();
 		gatobus = new GatoBus(0, app.height / 2, 50);
 		capsulas = new ArrayList<Thread>();
 	}
-	
+
 	/*
 	 * Metodo que se encargara de iniciar todas las variables y listas
+	 * 
 	 * @retorno void
 	 */
 	public void agregarCriaturasInicio() {
-			criaturas.add(new SinCara(this, app.width/2, app.height/2, 150));
+		criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 150));
+		criaturas.add(new Duende(this, app.width / 2 - 50, app.height / 4, 30));
 		for (int i = 0; i < criaturas.size(); i++) {
 			capsulas.add(new Thread(criaturas.get(i)));
 		}
 	}
-	
+
+	/*
+	 * Metodo que se encargara de añadir la comida que estará incialmene en el lienzo
+	 * @retorno void
+	 */
+	public void anadirComidaInicial() {
+		for (int i = 0; i < 15; i++) {
+			comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30 + Math.random() * 560),
+					(int) (20 + Math.random() * 40)));
+		}
+	}
+
 	/*
 	 * Método que se encargará de iniciar y encapsular los Hilos
+	 * 
 	 * @retorno void
 	 */
 	public void iniciarHilos() {
@@ -59,6 +79,7 @@ public class Mundo {
 
 	/*
 	 * Metodo que se encargara de cargar las imagenes de las pantalla
+	 * 
 	 * @retorno void
 	 */
 	public void cargarImagenes() {
@@ -70,10 +91,15 @@ public class Mundo {
 		cargarEnterDos();
 		cargarLuces();
 		cargarCriaturas();
+		cargarComida();
 		gatobus.cargarCriatura(app);
 	}
-	
-	public void cargarCriaturas(){
+
+	/*
+	 * Metodo que se encargara de cargar a todos los tipos de criaturas
+	 * @retorno void
+	 */
+	public void cargarCriaturas() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).cargar(app);
 		}
@@ -97,6 +123,26 @@ public class Mundo {
 		luces = new PImage[15];
 		for (int i = 0; i < luces.length; i++) {
 			luces[i] = app.loadImage("../data/Luces/Luces_" + i + ".png");
+		}
+	}
+
+	/*
+	 * Metodo que se encargara de cargar las imagenes de la comida
+	 * @retorno void
+	 */
+	public void cargarComida() {
+		for (int i = 0; i < comida.size(); i++) {
+			comida.get(i).cargarComida(app);
+		}
+	}
+
+	/*
+	 * Metodo que se encargara de pintar la comida
+	 * @retorno void
+	 */
+	public void pintarComida() {
+		for (int i = 0; i < comida.size(); i++) {
+			comida.get(i).pintar(app);
 		}
 	}
 
@@ -129,16 +175,23 @@ public class Mundo {
 			}
 		}
 	}
-	
-	public void pintarCriaturas(){
+
+	public void pintarCriaturas() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).pintar(app);
+		}
+	}
+
+	public void cambioEstado() {
+		for (int i = 0; i < criaturas.size(); i++) {
+			criaturas.get(i).cambioEstado(app);
 		}
 	}
 
 	/*
 	 * Método que se encargará de llamar a todos los pintar que vienen de las
 	 * otras clases y que será llamado en el Ejectuable en el draw
+	 * 
 	 * @retorno void
 	 */
 	public void pintar() {
@@ -147,6 +200,7 @@ public class Mundo {
 
 	/*
 	 * Método que se contendrá un switch que definirá los cambios pantallas
+	 * 
 	 * @retorno void
 	 */
 	public void pantallas() {
@@ -164,8 +218,10 @@ public class Mundo {
 			app.image(fondoEsc, app.width / 2, app.height / 2);
 			app.image(pasto, app.width / 2, app.height / 2);
 			pintarLuces();
-			//pintarGato();
+			// pintarGato();
+			pintarComida();
 			pintarCriaturas();
+			cambioEstado();
 			break;
 		}
 	}
