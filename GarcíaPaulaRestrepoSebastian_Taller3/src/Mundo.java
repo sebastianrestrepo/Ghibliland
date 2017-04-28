@@ -15,7 +15,6 @@ public class Mundo {
 
 	/*
 	 * Constructor de Mundo
-	 * 
 	 * @parametro PApplet app
 	 */
 	public Mundo(PApplet app) {
@@ -27,7 +26,6 @@ public class Mundo {
 
 	/*
 	 * Método que se encargará de iniciar y encapsular los Hilos
-	 * 
 	 * @retorno void
 	 */
 	public void iniciarHilos() {
@@ -116,7 +114,6 @@ public class Mundo {
 	/*
 	 * Método que se encargará de llamar a todos los pintar que vienen de las
 	 * otras clases y que será llamado en el Ejectuable en el draw
-	 * 
 	 * @retorno void
 	 */
 	public void pintar() {
@@ -125,7 +122,6 @@ public class Mundo {
 
 	/*
 	 * Método que se contendrá un switch que definirá los cambios pantallas
-	 * 
 	 * @retorno void
 	 */
 	public void pantallas() {

@@ -14,6 +14,10 @@ public class Comida {
 		
 	}
 	
+	public void cargarComida(){
+		
+	}
+	
 	/*
 	 *  Método que se encargará de pintar las secuencias de imagenes de los personajes 
 	 *  @parametro PApplet app

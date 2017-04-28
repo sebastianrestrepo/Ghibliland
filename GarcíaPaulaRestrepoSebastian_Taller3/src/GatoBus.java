@@ -14,14 +14,11 @@ public class GatoBus {
 	 *  @parametro int tam
 	 */
 	public GatoBus(int posX, int posY, int tam){
-	
 		this.x = posX;
 		this.y = posY;
-	
-	
 	}
-	public void cargarCriatura(PApplet app2) {
-		this.app = app2;
+	public void cargarCriatura(PApplet app) {
+		this.app = app;
 		criatura = new PImage[25];
 		for (int i = 0; i < criatura.length; i++) {
 			criatura[i] = app.loadImage("../data/GatoBusDe/GatobusDe_" + i + ".png");
