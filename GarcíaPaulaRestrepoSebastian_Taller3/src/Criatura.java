@@ -31,7 +31,7 @@ public abstract class Criatura implements Runnable {
 		this.posY = posY;
 		this.tam = tam;
 		vivo = true;
-		ritmo = 100;
+		ritmo = 2000;
 	}
 
 	@Override
@@ -79,16 +79,16 @@ public abstract class Criatura implements Runnable {
 		System.out.println(estado);
 		switch (estado) {
 		case 0:
-			posY++;
+			posY+=10;
 			break;
 		case 1:
-			posX++;
+			posX+=10;
 			break;
 		case 2:
-			posX--;
+			posX-=10;
 			break;
 		case 3:
-			posY--;
+			posY-=10;
 			break;
 		}
 	}

@@ -24,22 +24,22 @@ public class SinCara extends Criatura implements NEncontrable {
 		//Frontal
 		criaturaFrontal = new PImage[19];
 		for (int i = 0; i < criaturaFrontal.length; i++) {
-			criaturaFrontal[i] = app.loadImage("../data/personajes/sinCaraFrontal/No Face_" + i + ".png");
+			criaturaFrontal[i] = app.loadImage("../data/personajes/sinCara/sinCaraFrontal/No Face_" + i + ".png");
 		}
 		//Izquierda
 		criaturaIzq = new PImage[19];
 		for (int i = 0; i < criaturaIzq.length; i++) {
-			criaturaIzq[i] = app.loadImage("../data/personajes/sinCaraIzq/No Face Izq_" + i + ".png");
+			criaturaIzq[i] = app.loadImage("../data/personajes/sinCara/sinCaraIzq/No Face Izq_" + i + ".png");
 		}
 		//Derecha
 		criaturaDer = new PImage[19];
 		for (int i = 0; i < criaturaDer.length; i++) {
-			criaturaDer[i] = app.loadImage("../data/personajes/sinCaraDer/No Face Der_" + i + ".png");
+			criaturaDer[i] = app.loadImage("../data/personajes/sinCara/sinCaraDer/No Face Der_" + i + ".png");
 		}
 		//Posterior
 		criaturaPosterior = new PImage[15];
 		for (int i = 0; i < criaturaPosterior.length; i++) {
-			criaturaPosterior[i] = app.loadImage("../data/personajes/sinCaraPosterior/No Face posterior_" + i + ".png");
+			criaturaPosterior[i] = app.loadImage("../data/personajes/sinCara/sinCaraPosterior/No Face posterior_" + i + ".png");
 		}
 	}
 
