@@ -10,7 +10,7 @@ public abstract class Criatura implements Runnable {
 	protected int ritmo;
 	protected Mundo m;
 	protected PImage[] criaturaFrontal, criaturaDer, criaturaIzq, criaturaPosterior;
-	//protected int numFrame;
+	protected int numFrame;
 	protected boolean vivo;
 	protected boolean huyendo;
 
@@ -31,6 +31,7 @@ public abstract class Criatura implements Runnable {
 		this.posY = posY;
 		this.tam = tam;
 		vivo = true;
+		ritmo = 100;
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public abstract class Criatura implements Runnable {
 			try {
 				calculo();
 				mover();
-				Thread.sleep(33);
+				Thread.sleep(ritmo);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -74,6 +75,8 @@ public abstract class Criatura implements Runnable {
 	 * @retorno void
 	 */
 	public void mover() {
+		estado = (int) (1+Math.random()*3);
+		System.out.println(estado);
 		switch (estado) {
 		case 0:
 			posY++;

@@ -3,7 +3,6 @@ import processing.core.PImage;
 
 public class SinCara extends Criatura implements NEncontrable {
 
-	private int numFrame;
 
 	/*
 	 * Constructor de SinCara
@@ -29,7 +28,7 @@ public class SinCara extends Criatura implements NEncontrable {
 		}
 		//Izquierda
 		criaturaIzq = new PImage[19];
-		for (int i = 0; i < criaturaDer.length; i++) {
+		for (int i = 0; i < criaturaIzq.length; i++) {
 			criaturaIzq[i] = app.loadImage("../data/personajes/sinCaraIzq/No Face Izq_" + i + ".png");
 		}
 		//Derecha
@@ -40,7 +39,7 @@ public class SinCara extends Criatura implements NEncontrable {
 		//Posterior
 		criaturaPosterior = new PImage[15];
 		for (int i = 0; i < criaturaPosterior.length; i++) {
-			criaturaPosterior[i] = app.loadImage("../data/personajes/sinCaraDer/No Face posterior_" + i + ".png");
+			criaturaPosterior[i] = app.loadImage("../data/personajes/sinCaraPosterior/No Face posterior_" + i + ".png");
 		}
 	}
 

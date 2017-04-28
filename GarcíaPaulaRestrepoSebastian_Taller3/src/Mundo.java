@@ -41,7 +41,7 @@ public class Mundo {
 	 * @retorno void
 	 */
 	public void agregarCriaturasInicio() {
-			criaturas.add(new SinCara(this, app.width/2, 10, 150));
+			criaturas.add(new SinCara(this, app.width/2, app.height/2, 150));
 		for (int i = 0; i < criaturas.size(); i++) {
 			capsulas.add(new Thread(criaturas.get(i)));
 		}
@@ -164,7 +164,7 @@ public class Mundo {
 			app.image(fondoEsc, app.width / 2, app.height / 2);
 			app.image(pasto, app.width / 2, app.height / 2);
 			pintarLuces();
-			pintarGato();
+			//pintarGato();
 			pintarCriaturas();
 			break;
 		}
