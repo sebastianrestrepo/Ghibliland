@@ -9,7 +9,7 @@ public abstract class Criatura implements Runnable {
 	protected int fuerza;
 	protected int ritmo;
 	protected Mundo m;
-	protected PImage[] criatura;
+	protected PImage[] criaturaFrontal, criaturaDer, criaturaIzq, criaturaPosterior;
 	//protected int numFrame;
 	protected boolean vivo;
 	protected boolean huyendo;
@@ -74,7 +74,20 @@ public abstract class Criatura implements Runnable {
 	 * @retorno void
 	 */
 	public void mover() {
-		posY += 2;
+		switch (estado) {
+		case 0:
+			posY++;
+			break;
+		case 1:
+			posX++;
+			break;
+		case 2:
+			posX--;
+			break;
+		case 3:
+			posY--;
+			break;
+		}
 	}
 
 	/*
