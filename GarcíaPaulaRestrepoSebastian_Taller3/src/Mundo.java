@@ -262,9 +262,8 @@ public class Mundo {
 			}
 			break;
 		case 2:
-			if (app.key == 'N' ) {
-				iniciarHilos();
-				pantallas = 2;
+			if (app.key == 'N' || app.key == 'n') {
+		
 			}
 			break;
 		}
