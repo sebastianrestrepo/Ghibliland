@@ -16,13 +16,9 @@ public abstract class Criatura implements Runnable {
 
 	/*
 	 * Constructor de Criatura
-	 * 
 	 * @parametro Mundo m
-	 * 
 	 * @parametro int posX
-	 * 
 	 * @parametro int posY
-	 * 
 	 * @parametro int tam
 	 */
 	public Criatura(Mundo m, int posX, int posY, int tam) {
@@ -85,15 +81,19 @@ public abstract class Criatura implements Runnable {
 	 */
 	public void mover() {
 		switch (estado) {
+		//Hacia abajo
 		case 0:
 			posY+=2;
 			break;
+			//Derecha
 		case 1:
 			posX+=2;
 			break;
+			//Izquierda
 		case 2:
 			posX-=2;
 			break;
+			//Arriba
 		case 3:
 			posY-=2;
 			break;
@@ -140,7 +140,26 @@ public abstract class Criatura implements Runnable {
 	 * @retorno void
 	 */
 	public void devuelvis() {
-
+		//abajo
+		if (estado==0 && posY>= app.height-70) {
+			estado=0;
+			System.out.println("asdfasdfasdfasdf");
+		}
+		//derecha
+		if (estado==1 && posX>= app.width-50) {
+			System.out.println("asdfasdfasdfasdf");
+			estado=2;
+		}
+		//izquierda
+		if (estado==2 && posX<= 50) {
+			System.out.println("asdfasdfasdfasdf");
+			estado=3;
+		}
+		//arriba
+		if (estado==3 && posY<=50) {
+			System.out.println("asdfasdfasdfasdf");
+			estado=0;	
+		}
 	}
 
 	/*

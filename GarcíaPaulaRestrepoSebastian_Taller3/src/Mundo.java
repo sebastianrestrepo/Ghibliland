@@ -50,6 +50,9 @@ public class Mundo {
 	public void agregarCriaturasInicio() {
 		criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 150));
 		criaturas.add(new Duende(this, app.width / 2 - 50, app.height / 4, 30));
+		criaturas.add(new Totoro(this, app.width / 2 +100, app.height / 4, 30));
+		criaturas.add(new MiniTotoro(this, 200, 400, 30));
+		criaturas.add(new Kodama(this, 150, app.height / 4, 30));
 		for (int i = 0; i < criaturas.size(); i++) {
 			capsulas.add(new Thread(criaturas.get(i)));
 		}
@@ -222,8 +225,15 @@ public class Mundo {
 			pintarComida();
 			pintarCriaturas();
 			cambioEstado();
+			devuelvis();
 			break;
 		}
+	}
+
+	public void devuelvis() {
+		for (int i = 0; i < criaturas.size(); i++) {
+			criaturas.get(i).devuelvis();
+		}		
 	}
 
 	public void pintarGato() {
