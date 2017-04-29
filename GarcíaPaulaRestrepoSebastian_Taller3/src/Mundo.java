@@ -80,10 +80,8 @@ public class Mundo {
 	}
 
 	public void anadirEquipoNegro() {
-<<<<<<< HEAD
-		equipoNegro = (int) (1 + Math.random() * 2);
-=======
->>>>>>> branch 'master' of https://github.com/sebastianrestrepo/Ghibliland.git
+
+		equipoNegro = (int) (1 + Math.random() * 2); 
 		equipoNegro = (int) (1 + Math.random() * 3);
 		System.out.println(equipoNegro);
 		switch (equipoNegro) {
