@@ -35,6 +35,7 @@ public abstract class Criatura implements Runnable {
 			try {
 				calculo();
 				mover();
+				devuelvis();
 				Thread.sleep(ritmo);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -141,22 +142,22 @@ public abstract class Criatura implements Runnable {
 	 */
 	public void devuelvis() {
 		//abajo
-		if (estado==0 && posY>= app.height-70) {
+		if (estado==0 && posY>= app.height-80) {
 			estado=0;
 			System.out.println("asdfasdfasdfasdf");
 		}
 		//derecha
-		if (estado==1 && posX>= app.width-50) {
+		if (estado==1 && posX>= app.width-80) {
 			System.out.println("asdfasdfasdfasdf");
 			estado=2;
 		}
 		//izquierda
-		if (estado==2 && posX<= 50) {
+		if (estado==2 && posX<= 80) {
 			System.out.println("asdfasdfasdfasdf");
 			estado=3;
 		}
 		//arriba
-		if (estado==3 && posY<=50) {
+		if (estado==3 && posY<=80) {
 			System.out.println("asdfasdfasdfasdf");
 			estado=0;	
 		}

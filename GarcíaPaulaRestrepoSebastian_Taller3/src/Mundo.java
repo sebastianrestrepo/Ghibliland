@@ -253,16 +253,8 @@ public class Mundo {
 			pintarComida();
 			cambioEstado();
 			pintarCriaturas();
-			devuelvis();
 			break;
 		}
-	}
-
-
-	public void devuelvis() {
-		for (int i = 0; i < criaturas.size(); i++) {
-			criaturas.get(i).devuelvis();
-		}		
 	}
 
 	public void pintarGato() {
