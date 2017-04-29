@@ -16,6 +16,7 @@ public class Mundo {
 	private ArrayList<Criatura> criaturas;
 	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos
 										// de las criaturas
+	private Thread capsulaGatoBus;
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
 	private boolean reset;
@@ -42,12 +43,10 @@ public class Mundo {
 	public void inicializarVariables() {
 		criaturas = new ArrayList<Criatura>();
 		comida = new ArrayList<Comida>();
-		gatobus = new GatoBus(-150, app.height / 2-50, 50, this, reset);
+		gatobus = new GatoBus(150, app.height / 2 - 50, 50, this, reset);
 		capsulas = new ArrayList<Thread>();
 		reset = false;
-		
-
-
+			
 	}
 
 	/*
@@ -83,7 +82,7 @@ public class Mundo {
 
 	public void anadirEquipoNegro() {
 
-		equipoNegro = (int) (1 + Math.random() * 2); 
+		equipoNegro = (int) (1 + Math.random() * 2);
 		equipoNegro = (int) (1 + Math.random() * 3);
 		System.out.println(equipoNegro);
 		switch (equipoNegro) {
@@ -115,7 +114,6 @@ public class Mundo {
 			capsulas.get(i).start();
 		}
 
-		
 	}
 
 	/*
@@ -360,15 +358,24 @@ public class Mundo {
 			if (app.key == 'B' || app.key == 'b') {
 
 			}
-			
-			if (app.key == 'R' || app.key == 'r') {
-				Thread t = new Thread(gatobus);
 
-				t.start();
-				reset =  true;
-				
+			if (app.key == 'R' || app.key == 'r') {
+				System.out.println("boolean" + reset);
+				System.out.println("gatoX" + gatobus.getX());
+				iniciarHiloGato();
+				reset = true;
+
 			}
 			break;
+		}
+	}
+
+	
+
+	public void iniciarHiloGato() {
+		if (reset) {
+			Thread gb = new Thread(gatobus);
+			gb.start();
 		}
 	}
 

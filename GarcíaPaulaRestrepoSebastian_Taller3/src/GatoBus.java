@@ -11,6 +11,7 @@ public class GatoBus implements Runnable{
 	private ArrayList<Comida> comida;
 	private ArrayList<Criatura> c;
 	private boolean reset;
+	private boolean vivo;
 
 	private int x, y;
 
@@ -28,6 +29,7 @@ public class GatoBus implements Runnable{
 		this.y = posY;
 		this.m = m;
 		this.reset= reset;
+		vivo= true;
 	}
 
 	public void cargarCriatura(PApplet app) {
@@ -58,12 +60,27 @@ public class GatoBus implements Runnable{
 
 	}
 
+	@Override
+	public void run() {
+		while (vivo) {
+			try {
+				mover();
+				reset();
+				System.out.println("reseteandooooo");
+				Thread.sleep(33);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}		
+	}
 	public void mover() {
 		if (x >= -150) {
 			x += 3;
 		}
 
-		if (x >= app.width + 150) {
+		else if (x >= app.width + 150) {
 			x = -150;
 		}
 	}
@@ -87,18 +104,12 @@ public class GatoBus implements Runnable{
 		}
 	}
 
-	@Override
-	public void run() {
-		while (reset) {
-			try {
-				mover();
-				reset();
-				Thread.sleep(33);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}		
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
 	}
 }
