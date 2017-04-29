@@ -187,7 +187,25 @@ public abstract class Criatura implements Runnable {
 				c.remove(i);
 			}
 		}
+	}
 
+	/*
+	 * Método que se removerá del ArrayList al elementos que esté huyendo justo
+	 * en el momento en que salda de la pantalla, lo sabrá por medio del boolean
+	 * 'huyendo'.
+	 * 
+	 * @retorno void
+	 */
+	public void remover() {
+		ArrayList<Criatura> refCriaturas = m.getCriaturas();
+		for (int i = 0; i < refCriaturas.size(); i++) {
+			if (huyendo) {
+				if (refCriaturas.get(i).getPosX() < 0 || refCriaturas.get(i).getPosX() > 600
+						|| refCriaturas.get(i).getPosY() < 0 || refCriaturas.get(i).getPosY() > 600) {
+					//refCriaturas.get(i).remove();
+				}
+			}
+		}
 	}
 
 	/*

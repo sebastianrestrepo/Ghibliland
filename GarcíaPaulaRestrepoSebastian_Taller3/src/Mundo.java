@@ -204,7 +204,7 @@ public class Mundo {
 			break;
 		case 2:
 			app.image(fondoEsc, app.width / 2, app.height / 2);
-			// pintarGato();
+			pintarGato();
 			pintarComida();
 			cambioEstado();
 			pintarCriaturas();
@@ -324,23 +324,18 @@ public class Mundo {
 			}
 			break;
 		case 2:
+			//Añadir equipo negro
 			if (app.key == 'N' || app.key == 'n') {
 				anadirEquipoNegro();
+			}
+			//Añadir equipo blanco
+			if (app.key == 'B' || app.key == 'b') {
+			
 			}
 			break;
 		}
 	}
 
-	/*
-	 * Método que se removerá del ArrayList al elementos que esté huyendo
-	 * justo en el momento en que salda de la pantalla, lo sabrá por medio del
-	 * boolean 'huyendo'.
-	 * 
-	 * @retorno void
-	 */
-	public void remover() {
-
-	}
 
 	// GETTERS Y SETTERS
 	public ArrayList<Criatura> getCriaturas() {
