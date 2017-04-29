@@ -155,19 +155,19 @@ public abstract class Criatura implements Runnable {
 	 */
 	public void devuelvis() {
 		// abajo
-		if (estado == 0 && posY >= app.height - 80) {
+		if (estado == 0 && posY >= app.height - 90) {
 			estado = 0;
 		}
 		// derecha
-		if (estado == 1 && posX >= app.width - 80) {
+		if (estado == 1 && posX >= app.width - 90) {
 			estado = 2;
 		}
 		// izquierda
-		if (estado == 2 && posX <= 80) {
+		if (estado == 2 && posX <= 90) {
 			estado = 3;
 		}
 		// arriba
-		if (estado == 3 && posY <= 80) {
+		if (estado == 3 && posY <= 90) {
 			estado = 0;
 		}
 	}
@@ -202,7 +202,7 @@ public abstract class Criatura implements Runnable {
 		for (int i = 0; i < refCriaturas.size(); i++) {
 			Criatura ref = refCriaturas.get(i);
 			if (huyendo) {
-				if (ref.getPosX() < 0 || ref.getPosX() > 600 || ref.getPosY() < 0 || ref.getPosY() > 600) {
+				if (ref.getPosX() < -30 || ref.getPosX() > 630 || ref.getPosY() < -30 || ref.getPosY() > 630) {
 					refCriaturas.remove(ref);
 					System.out.println(refCriaturas);
 				}
