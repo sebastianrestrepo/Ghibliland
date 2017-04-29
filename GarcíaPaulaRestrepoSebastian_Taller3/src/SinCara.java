@@ -42,7 +42,8 @@ public class SinCara extends Criatura implements NEncontrable {
 		// Posterior
 		criaturaPosterior = new PImage[15];
 		for (int i = 0; i < criaturaPosterior.length; i++) {
-			criaturaPosterior[i] = app.loadImage("../data/personajes/sinCara/sinCaraPosterior/No Face posterior_" + i + ".png");
+			criaturaPosterior[i] = app
+					.loadImage("../data/personajes/sinCara/sinCaraPosterior/No Face posterior_" + i + ".png");
 		}
 	}
 
@@ -116,8 +117,19 @@ public class SinCara extends Criatura implements NEncontrable {
 	 * @retorno void
 	 */
 	public void encuentro() {
-		// TODO Auto-generated method stub
-
+		ArrayList<Criatura> refCriaturas = m.getCriaturas();
+		for (int i = 0; i < refCriaturas.size(); i++) {
+			if (refCriaturas.get(i) instanceof BEncontrable) {
+				if (calcularDistancia(refCriaturas.get(i))) {
+					if (fuerza < refCriaturas.get(i).fuerza) {
+						huir();
+					}
+					System.out.println("Fuerza Sin Cara: " + fuerza + " Fuerza Blanco: " + refCriaturas.get(i).fuerza);
+					System.out.println("huyeee");
+				}
+			}
+		}
 	}
 
+	// FINAL DE LA CLASE SIN CARA
 }

@@ -20,7 +20,7 @@ public class Kodama extends Criatura implements BEncontrable {
 	 */
 	public Kodama(Mundo m, int posX, int posY, int tam) {
 		super(m, posX, posY, tam);
-	
+
 		numFrameDer = 3;
 	}
 
@@ -94,7 +94,7 @@ public class Kodama extends Criatura implements BEncontrable {
 		this.app = app;
 		switch (estado) {
 		case 0:
-	//		System.out.println("numFrame: " + numFrame);
+			// System.out.println("numFrame: " + numFrame);
 			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width,
 					criaturaFrontal[numFrame].height);
 			break;
@@ -107,7 +107,7 @@ public class Kodama extends Criatura implements BEncontrable {
 					criaturaIzq[numFrameIzq].height);
 			break;
 		case 3:
-//			System.out.println("numFramePost: " + numFramePost);
+			// System.out.println("numFramePost: " + numFramePost);
 			app.image(criaturaPosterior[numFramePost], posX, posY, criaturaPosterior[numFramePost].width,
 					criaturaPosterior[numFramePost].height);
 			break;
@@ -122,7 +122,19 @@ public class Kodama extends Criatura implements BEncontrable {
 	 * @retorno void
 	 */
 	public void encuentro() {
-
+		ArrayList<Criatura> refCriaturas = m.getCriaturas();
+		for (int i = 0; i < refCriaturas.size(); i++) {
+			if (refCriaturas.get(i) instanceof NEncontrable) {
+				if (calcularDistancia(refCriaturas.get(i))) {
+					if (fuerza < refCriaturas.get(i).fuerza) {
+						huir();
+					}
+					System.out.println("Fuerza Kodama: " + fuerza + " Fuerza Negro: " + refCriaturas.get(i).fuerza);
+					System.out.println("huyeee");
+				}
+			}
+		}
 	}
 
+	// FINAL DE LA CLASE KODAMA
 }
