@@ -66,7 +66,7 @@ public class GatoBus implements Runnable{
 			try {
 				mover();
 				reset();
-				System.out.println("reseteandooooo");
+			//	System.out.println("reseteandooooo");
 				Thread.sleep(33);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -78,10 +78,9 @@ public class GatoBus implements Runnable{
 	public void mover() {
 		if (x >= -150) {
 			x += 3;
-		}
-
-		else if (x >= app.width + 150) {
-			x = -150;
+			 if (x >= app.width + 150) {
+					x = -150;
+				}
 		}
 	}
 

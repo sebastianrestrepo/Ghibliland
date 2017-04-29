@@ -360,10 +360,10 @@ public class Mundo {
 			}
 
 			if (app.key == 'R' || app.key == 'r') {
+				reset = true;
 				System.out.println("boolean" + reset);
 				System.out.println("gatoX" + gatobus.getX());
 				iniciarHiloGato();
-				reset = true;
 
 			}
 			break;
