@@ -179,7 +179,6 @@ public abstract class Criatura implements Runnable {
 		for (int i = 0; i < c.size(); i++) {
 			if (PApplet.dist(posX, posY,c.get(i).getPosX(), c.get(i).getPosY())<50) {
 				System.out.println("comioooooooo");
-				System.out.println(fuerza);
 				fuerza+=1;
 				c.remove(i);
 			}
