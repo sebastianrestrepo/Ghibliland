@@ -54,12 +54,12 @@ public class Mundo {
 	 * @retorno void
 	 */
 	public void agregarCriaturasInicio() {
-		criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 150));
-		criaturas.add(new Duende(this, app.width / 2 - 50, app.height / 4, 30));
-		criaturas.add(new Gato(this, app.width / 2 - 50, app.height / 4, 30));
-		criaturas.add(new Totoro(this, app.width / 2 + 100, app.height / 4, 30));
-		criaturas.add(new MiniTotoro(this, 200, 400, 30));
-		criaturas.add(new Kodama(this, 150, app.height / 4, 30));
+		criaturas.add(new SinCara(this, 121, 145, 150));
+		criaturas.add(new Duende(this, 124, 349, 30));
+		criaturas.add(new Gato(this, 129, 571, 30));
+		criaturas.add(new Totoro(this, 574, 91, 30));
+		criaturas.add(new MiniTotoro(this, 572, 347, 30));
+		criaturas.add(new Kodama(this, 585, 592, 30));
 		for (int i = 0; i < criaturas.size(); i++) {
 			capsulas.add(new Thread(criaturas.get(i)));
 		}

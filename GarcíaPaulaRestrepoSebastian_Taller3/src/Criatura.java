@@ -156,7 +156,7 @@ public abstract class Criatura implements Runnable {
 	public void devuelvis() {
 		// abajo
 		if (estado == 0 && posY >= app.height - 90) {
-			estado = 0;
+			estado = 3;
 		}
 		// derecha
 		if (estado == 1 && posX >= app.width - 90) {
@@ -164,7 +164,7 @@ public abstract class Criatura implements Runnable {
 		}
 		// izquierda
 		if (estado == 2 && posX <= 90) {
-			estado = 3;
+			estado = 1;
 		}
 		// arriba
 		if (estado == 3 && posY <= 90) {
