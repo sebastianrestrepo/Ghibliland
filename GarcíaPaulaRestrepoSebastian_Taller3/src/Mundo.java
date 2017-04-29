@@ -14,8 +14,7 @@ public class Mundo {
 	private PImage[] enterUno, enterDos, luces;
 	private int numActual, numLuces;
 	private ArrayList<Criatura> criaturas;
-	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos
-										// de las criaturas
+	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos de las criaturas
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
 	
@@ -54,6 +53,7 @@ public class Mundo {
 	public void agregarCriaturasInicio() {
 		criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 150));
 		criaturas.add(new Duende(this, app.width / 2 - 50, app.height / 4, 30));
+		criaturas.add(new Gato(this, app.width / 2 - 50, app.height / 4, 30));
 		criaturas.add(new Totoro(this, app.width / 2 +100, app.height / 4, 30));
 		criaturas.add(new MiniTotoro(this, 200, 400, 30));
 		criaturas.add(new Kodama(this, 150, app.height / 4, 30));
@@ -86,6 +86,9 @@ public class Mundo {
 			break;
 		case 2:
 			criaturas.add(new Duende(this, app.width / 2 - 50, app.height / 4, 30));
+			break;
+		case 3:
+			criaturas.add(new Gato(this, app.width / 2 - 50, app.height / 4, 30));
 			break;
 		}
 		for (int i = 0; i < criaturas.size(); i++) {
@@ -217,13 +220,14 @@ public class Mundo {
 		darDeComer();
 	}
 	
-	//Método para pasarle el arraylist de comida a las criaturas
+	//MÃ©todo para pasarle el ArrayList de comida a las criaturas
 	public void darDeComer() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).comer(comida);
 			
 		}
 	}
+	
 	public void cambioEstado() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).cambioEstado(app);
@@ -265,7 +269,6 @@ public class Mundo {
 			pintarComida();
 			cambioEstado();
 			pintarCriaturas();
-			
 			break;
 		}
 	}
