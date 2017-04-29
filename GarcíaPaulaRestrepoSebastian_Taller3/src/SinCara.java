@@ -48,8 +48,8 @@ public class SinCara extends Criatura implements NEncontrable {
 	}
 
 	/*
-	 * Método que se encargará de hacer los cálculos para pintar las secuencias
-	 * de los personajes
+	 * Método que se encargará de hacer los cálculos para pintar las
+	 * secuencias de los personajes
 	 * 
 	 * @retorno void
 	 */
@@ -94,25 +94,27 @@ public class SinCara extends Criatura implements NEncontrable {
 		this.app = app;
 		switch (estado) {
 		case 0:
-			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width,
-					criaturaFrontal[numFrame].height);
+			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width / 2 + tam,
+					criaturaFrontal[numFrame].height / 2 + tam);
 			break;
 		case 1:
-			app.image(criaturaDer[numFrame], posX, posY, criaturaDer[numFrame].width, criaturaDer[numFrame].height);
+			app.image(criaturaDer[numFrame], posX, posY, criaturaDer[numFrame].width / 2 + tam,
+					criaturaDer[numFrame].height / 2 + tam);
 			break;
 		case 2:
-			app.image(criaturaIzq[numFrame], posX, posY, criaturaIzq[numFrame].width, criaturaIzq[numFrame].height);
+			app.image(criaturaIzq[numFrame], posX, posY, criaturaIzq[numFrame].width / 2 + tam,
+					criaturaIzq[numFrame].height / 2 + tam);
 			break;
 		case 3:
-			app.image(criaturaPosterior[numFramePost], posX, posY, criaturaPosterior[numFramePost].width,
-					criaturaPosterior[numFramePost].height);
+			app.image(criaturaPosterior[numFramePost], posX, posY, criaturaPosterior[numFramePost].width / 2 + tam,
+					criaturaPosterior[numFramePost].height / 2 + tam);
 			break;
 		}
 	}
 
 	/*
-	 * Método que llamará el método de calcular de distancia y bajo la condición
-	 * de que este retorne true llamará al método huir
+	 * Método que llamará el método de calcular de distancia y bajo la
+	 * condición de que este retorne true llamará al método huir
 	 * 
 	 * @retorno void
 	 */

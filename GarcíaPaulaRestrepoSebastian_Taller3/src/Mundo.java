@@ -87,7 +87,7 @@ public class Mundo {
 		System.out.println(equipoNegro);
 		switch (equipoNegro) {
 		case 1:
-			criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 150));
+			criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 30));
 			break;
 		case 2:
 			criaturas.add(new Duende(this, app.width / 2 - 50, app.height / 4, 30));

@@ -95,21 +95,21 @@ public class Kodama extends Criatura implements BEncontrable {
 		switch (estado) {
 		case 0:
 			// System.out.println("numFrame: " + numFrame);
-			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width,
-					criaturaFrontal[numFrame].height);
+			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width/2+15,
+					criaturaFrontal[numFrame].height/2+15);
 			break;
 		case 1:
-			app.image(criaturaDer[numFrameDer], posX, posY, criaturaDer[numFrameDer].width,
-					criaturaDer[numFrameDer].height);
+			app.image(criaturaDer[numFrameDer], posX, posY,  criaturaDer[numFrameDer].width/2+15,
+					criaturaDer[numFrameDer].height/2+15);
 			break;
 		case 2:
-			app.image(criaturaIzq[numFrameIzq], posX, posY, criaturaIzq[numFrameIzq].width,
-					criaturaIzq[numFrameIzq].height);
+			app.image(criaturaIzq[numFrameIzq], posX, posY,  criaturaIzq[numFrameIzq].width/2+15,
+					criaturaIzq[numFrameIzq].height/2+15);
 			break;
 		case 3:
 			// System.out.println("numFramePost: " + numFramePost);
-			app.image(criaturaPosterior[numFramePost], posX, posY, criaturaPosterior[numFramePost].width,
-					criaturaPosterior[numFramePost].height);
+			app.image(criaturaPosterior[numFramePost], posX, posY, criaturaPosterior[numFramePost].width/2+15,
+					criaturaPosterior[numFramePost].height/2+15);
 			break;
 		}
 

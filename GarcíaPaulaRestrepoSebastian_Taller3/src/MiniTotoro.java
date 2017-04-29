@@ -94,18 +94,20 @@ public class MiniTotoro extends Criatura implements BEncontrable {
 		this.app = app;
 		switch (estado) {
 		case 0:
-			app.image(criaturaFrontal[numFrameCuatro], posX, posY, criaturaFrontal[numFrameCuatro].width,
-					criaturaFrontal[numFrameCuatro].height);
+			app.image(criaturaFrontal[numFrameCuatro], posX, posY,  criaturaFrontal[numFrameCuatro].width/2+10,
+					criaturaFrontal[numFrameCuatro].height/2+10);
 			break;
 		case 1:
-			app.image(criaturaDer[numFrame], posX, posY, criaturaDer[numFrame].width, criaturaDer[numFrame].height);
+			app.image(criaturaDer[numFrame], posX, posY, criaturaDer[numFrame].width/2+10,
+					criaturaDer[numFrame].height/2+10);
 			break;
 		case 2:
-			app.image(criaturaIzq[numFrame], posX, posY, criaturaIzq[numFrame].width, criaturaIzq[numFrame].height);
+			app.image(criaturaIzq[numFrame], posX, posY, criaturaIzq[numFrame].width/2+10,
+					criaturaIzq[numFrame].height/2+10);
 			break;
 		case 3:
-			app.image(criaturaPosterior[numFrameCuatro], posX, posY, criaturaPosterior[numFrameCuatro].width,
-					criaturaPosterior[numFrameCuatro].height);
+			app.image(criaturaPosterior[numFrameCuatro], posX, posY, criaturaPosterior[numFrameCuatro].width/2+10,
+					criaturaPosterior[numFrameCuatro].height/2+10);
 			break;
 		}
 
