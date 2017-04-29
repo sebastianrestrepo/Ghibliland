@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -8,6 +10,7 @@ public abstract class Criatura implements Runnable {
 	protected int posX, posY, tam;
 	protected int fuerza;
 	protected int ritmo;
+	protected ArrayList<Comida> c;
 	protected Mundo m;
 	protected PImage[] criaturaFrontal, criaturaDer, criaturaIzq, criaturaPosterior;
 	protected boolean vivo;
@@ -15,9 +18,13 @@ public abstract class Criatura implements Runnable {
 
 	/*
 	 * Constructor de Criatura
+	 * 
 	 * @parametro Mundo m
+	 * 
 	 * @parametro int posX
+	 * 
 	 * @parametro int posY
+	 * 
 	 * @parametro int tam
 	 */
 	public Criatura(Mundo m, int posX, int posY, int tam) {
@@ -72,27 +79,27 @@ public abstract class Criatura implements Runnable {
 	public abstract void pintar(PApplet app);
 
 	/*
-	 * Método que contendrá un switch asociado a un número random que definirá
-	 * movimientos en cuatro direcciones difentes con base al random estado. Se
-	 * llamará en el hilo (run)
+	 * Método que contendrá un switch asociado a un número random que
+	 * definirá movimientos en cuatro direcciones difentes con base al random
+	 * estado. Se llamará en el hilo (run)
 	 * 
 	 * @retorno void
 	 */
 	public void mover() {
 		switch (estado) {
-		//Hacia abajo
+		// Hacia abajo
 		case 0:
 			posY += 2;
 			break;
-			//Derecha
+		// Derecha
 		case 1:
 			posX += 2;
 			break;
-			//Izquierda
+		// Izquierda
 		case 2:
 			posX -= 2;
 			break;
-			//Arriba
+		// Arriba
 		case 3:
 			posY -= 2;
 			break;
@@ -114,9 +121,9 @@ public abstract class Criatura implements Runnable {
 	}
 
 	/*
-	 * Método que al ser llamado aumente la variable de ritmo y haga que el hilo
-	 * se ejecute más rápido para que el personaje huya, adicionalmente activará
-	 * la variable huyendo a true.
+	 * Método que al ser llamado aumente la variable de ritmo y haga que el
+	 * hilo se ejecute más rápido para que el personaje huya, adicionalmente
+	 * activará la variable huyendo a true.
 	 * 
 	 * @retorno void
 	 */
@@ -125,8 +132,9 @@ public abstract class Criatura implements Runnable {
 	}
 
 	/*
-	 * Método que no me acuerdo que llamará el método de calcular de distancia y
-	 * bajo la condición de que este retorne true llamará al método huir
+	 * Método que no me acuerdo que llamará el método de calcular de
+	 * distancia y bajo la condición de que este retorne true llamará al
+	 * método huir
 	 * 
 	 * @retorno void
 	 */
@@ -134,50 +142,55 @@ public abstract class Criatura implements Runnable {
 
 	/*
 	 * Método que se encarga de comprobar cuando una criatura está a punto de
-	 * salir del lienzo, y a base de condiciones hacerla devolver a la dirección
-	 * contraria a la que venía, solo sucederá mientras el boolean 'huyendo' sea
-	 * false
+	 * salir del lienzo, y a base de condiciones hacerla devolver a la
+	 * dirección contraria a la que venía, solo sucederá mientras el boolean
+	 * 'huyendo' sea false
 	 * 
 	 * @retorno void
 	 */
 	public void devuelvis() {
-		//abajo
-		if (estado==0 && posY>= app.height-80) {
-			estado=0;
-			System.out.println("asdfasdfasdfasdf");
+		// abajo
+		if (estado == 0 && posY >= app.height - 80) {
+			estado = 0;
 		}
-		//derecha
-		if (estado==1 && posX>= app.width-80) {
-			System.out.println("asdfasdfasdfasdf");
-			estado=2;
+		// derecha
+		if (estado == 1 && posX >= app.width - 80) {
+			estado = 2;
 		}
-		//izquierda
-		if (estado==2 && posX<= 80) {
-			System.out.println("asdfasdfasdfasdf");
-			estado=3;
+		// izquierda
+		if (estado == 2 && posX <= 80) {
+			estado = 3;
 		}
-		//arriba
-		if (estado==3 && posY<=80) {
-			System.out.println("asdfasdfasdfasdf");
-			estado=0;	
+		// arriba
+		if (estado == 3 && posY <= 80) {
+			estado = 0;
 		}
 	}
 
 	/*
-	 * Método que se encarga de definir que cuando una criatura pasé por encima
-	 * de la comida, esta se sume a su contador interno de fuerza y además haga
-	 * aumentar su tamaño como feedback de que es más fuerte
+	 * Método que se encarga de definir que cuando una criatura pasé por
+	 * encima de la comida, esta se sume a su contador interno de fuerza y
+	 * además haga aumentar su tamaño como feedback de que es más fuerte
 	 * 
 	 * @retorno void
 	 */
-	public void comer() {
-
+	public void comer(ArrayList<Comida> c) {
+		this.c = c;
+		for (int i = 0; i < c.size(); i++) {
+			if (PApplet.dist(posX, posY,c.get(i).getPosX(), c.get(i).getPosY())<50) {
+				System.out.println("comioooooooo");
+				System.out.println(fuerza);
+				fuerza+=1;
+				c.remove(i);
+			}
+		}
+		
 	}
 
 	/*
-	 * Método que se encarga de calcular la distancia de las criaturas por medio
-	 * del método estático dist y que retornara true cuando dos criaturas estén
-	 * muy cerca. Se llamará en el huir
+	 * Método que se encarga de calcular la distancia de las criaturas por
+	 * medio del método estático dist y que retornara true cuando dos
+	 * criaturas estén muy cerca. Se llamará en el huir
 	 * 
 	 * @retorno boolean
 	 */
@@ -185,5 +198,17 @@ public abstract class Criatura implements Runnable {
 		return true;
 	}
 
+	public boolean calcularDistanciaComida() {
+		
+		return true;
+	}
 	// FINAL DE LA CLASE CRIATURA
+
+	public int getPosX() {
+		return posX;
+	}
+
+	public int getPosY() {
+		return posY;
+	}
 }

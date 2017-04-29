@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -17,6 +19,7 @@ public class MiniTotoro extends Criatura implements BEncontrable {
 	
 	public MiniTotoro(Mundo m, int posX, int posY, int tam) {
 		super(m, posX, posY, tam);
+	
 		numFrameCuatro = 4;
 	}
 

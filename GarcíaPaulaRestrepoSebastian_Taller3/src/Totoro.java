@@ -5,7 +5,6 @@ public class Totoro extends Criatura implements BEncontrable {
 
 	private int numFrame;
 	
-	
 	/*
 	 *  Constructor de Totoro
 	 *  @parametro Mundo m
@@ -63,7 +62,6 @@ public class Totoro extends Criatura implements BEncontrable {
 			}
 			break;
 		case 3:
-			numFrame = 0;
 			numFrame++;
 			if (numFrame >= 14) {
 				numFrame = 0;

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -18,6 +20,7 @@ public class Kodama extends Criatura implements BEncontrable {
 	 */
 	public Kodama(Mundo m, int posX, int posY, int tam) {
 		super(m, posX, posY, tam);
+	
 		numFrameDer = 3;
 	}
 
@@ -64,7 +67,7 @@ public class Kodama extends Criatura implements BEncontrable {
 			break;
 		// Iz
 		case 2:
-			numFrame++;
+			numFrameIzq++;
 			if (numFrameIzq >= 39) {
 				numFrameIzq = 0;
 			}
@@ -91,7 +94,7 @@ public class Kodama extends Criatura implements BEncontrable {
 		this.app = app;
 		switch (estado) {
 		case 0:
-			System.out.println("numFrame: " + numFrame);
+	//		System.out.println("numFrame: " + numFrame);
 			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width,
 					criaturaFrontal[numFrame].height);
 			break;
@@ -104,7 +107,7 @@ public class Kodama extends Criatura implements BEncontrable {
 					criaturaIzq[numFrameIzq].height);
 			break;
 		case 3:
-			System.out.println("numFramePost: " + numFramePost);
+//			System.out.println("numFramePost: " + numFramePost);
 			app.image(criaturaPosterior[numFramePost], posX, posY, criaturaPosterior[numFramePost].width,
 					criaturaPosterior[numFramePost].height);
 			break;

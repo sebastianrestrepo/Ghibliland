@@ -49,6 +49,13 @@ public class Comida {
 			break;
 		}
 	}
-
+	
+	public int getPosX() {
+		return posX;
+	}
+	
+	public int getPosY() {
+		return posY;
+	}
 	
 }

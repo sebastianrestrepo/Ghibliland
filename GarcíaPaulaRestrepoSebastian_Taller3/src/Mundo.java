@@ -43,6 +43,7 @@ public class Mundo {
 		comida = new ArrayList<Comida>();
 		gatobus = new GatoBus(0, app.height / 2, 50);
 		capsulas = new ArrayList<Thread>();
+
 	}
 
 	/*
@@ -72,6 +73,8 @@ public class Mundo {
 			comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30 + Math.random() * 560),
 					(int) (15 + Math.random() * 25)));
 		}
+		
+	
 	}
 
 	public void anadirEquipoNegro() {
@@ -209,9 +212,18 @@ public class Mundo {
 	public void pintarCriaturas() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).pintar(app);
+			
+		}
+		darDeComer();
+	}
+	
+	//Método para pasarle el arraylist de comida a las criaturas
+	public void darDeComer() {
+		for (int i = 0; i < criaturas.size(); i++) {
+			criaturas.get(i).comer(comida);
+			
 		}
 	}
-
 	public void cambioEstado() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).cambioEstado(app);
@@ -253,10 +265,12 @@ public class Mundo {
 			pintarComida();
 			cambioEstado();
 			pintarCriaturas();
+			
 			break;
 		}
 	}
 
+	
 	public void pintarGato() {
 		gatobus.pintar(app);
 	}
