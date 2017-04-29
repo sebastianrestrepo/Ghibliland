@@ -3,13 +3,14 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class GatoBus {
+public class GatoBus implements Runnable{
 	private PImage[] criatura;
 	private int numFrame;
 	private PApplet app;
 	private Mundo m;
 	private ArrayList<Comida> comida;
 	private ArrayList<Criatura> c;
+	private boolean reset;
 
 	private int x, y;
 
@@ -22,10 +23,11 @@ public class GatoBus {
 	 * 
 	 * @parametro int tam
 	 */
-	public GatoBus(int posX, int posY, int tam, Mundo m) {
+	public GatoBus(int posX, int posY, int tam, Mundo m, boolean reset) {
 		this.x = posX;
 		this.y = posY;
 		this.m = m;
+		this.reset= reset;
 	}
 
 	public void cargarCriatura(PApplet app) {
@@ -83,5 +85,20 @@ public class GatoBus {
 				refCo.remove(ref);
 			}
 		}
+	}
+
+	@Override
+	public void run() {
+		while (reset) {
+			try {
+				mover();
+				reset();
+				Thread.sleep(33);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}		
 	}
 }

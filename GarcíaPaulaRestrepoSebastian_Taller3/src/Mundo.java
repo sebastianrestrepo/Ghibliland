@@ -42,9 +42,11 @@ public class Mundo {
 	public void inicializarVariables() {
 		criaturas = new ArrayList<Criatura>();
 		comida = new ArrayList<Comida>();
-		gatobus = new GatoBus(-150, app.height / 2-50, 50, this);
+		gatobus = new GatoBus(-150, app.height / 2-50, 50, this, reset);
 		capsulas = new ArrayList<Thread>();
 		reset = false;
+		
+
 
 	}
 
@@ -112,6 +114,8 @@ public class Mundo {
 		for (int i = 0; i < capsulas.size(); i++) {
 			capsulas.get(i).start();
 		}
+
+		
 	}
 
 	/*
@@ -284,7 +288,6 @@ public class Mundo {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).pintar(app);
 		}
-
 		darDeComer();
 	}
 
@@ -326,8 +329,6 @@ public class Mundo {
 	public void pintarGato() {
 		if (reset) {
 			gatobus.pintar(app);
-			gatobus.mover();
-			gatobus.reset();
 		}
 	}
 
@@ -361,7 +362,11 @@ public class Mundo {
 			}
 			
 			if (app.key == 'R' || app.key == 'r') {
+				Thread t = new Thread(gatobus);
+
+				t.start();
 				reset =  true;
+				
 			}
 			break;
 		}
