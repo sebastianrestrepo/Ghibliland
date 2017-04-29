@@ -185,7 +185,7 @@ public abstract class Criatura implements Runnable {
 			if (PApplet.dist(posX, posY, c.get(i).getPosX(), c.get(i).getPosY()) < 50) {
 				System.out.println("comioooooooo");
 				fuerza += 1;
-				tam +=2;
+				tam +=7;
 				c.remove(i);
 			}
 		}
@@ -219,7 +219,7 @@ public abstract class Criatura implements Runnable {
 	 * @retorno boolean
 	 */
 	public boolean calcularDistancia(Criatura ref) {
-		return PApplet.dist(posX, posY, ref.getPosX(), ref.getPosY()) < 20;
+		return PApplet.dist(posX, posY, ref.getPosX(), ref.getPosY()) < 30;
 	}
 
 	public boolean calcularDistanciaComida() {

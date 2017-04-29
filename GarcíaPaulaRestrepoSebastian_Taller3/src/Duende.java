@@ -89,16 +89,18 @@ public class Duende extends Criatura implements NEncontrable {
 		this.app = app;
 		switch (estado) {
 		case 0:
-			app.image(criaturaFrontal[numFrame], posX, posY, 60, 60);
+			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width/2+ tam,
+					criaturaFrontal[numFrame].height/2+ tam);
 			break;
 		case 1:
-			app.image(criaturaDer[numFrame], posX, posY, 60, 60);
+			app.image(criaturaDer[numFrame], posX, posY,criaturaDer[numFrame].width/2 + tam, criaturaDer[numFrame].height/2 + tam);
 			break;
 		case 2:
-			app.image(criaturaIzq[numFrame], posX, posY, 60, 60);
+			app.image(criaturaIzq[numFrame], posX, posY, criaturaIzq[numFrame].width/2 + tam, criaturaIzq[numFrame].height/2 + tam);
 			break;
 		case 3:
-			app.image(criaturaPosterior[numFrame], posX, posY, 60, 60);
+			app.image(criaturaPosterior[numFrame], posX, posY, criaturaPosterior[numFrame].width/2 + tam,
+					criaturaPosterior[numFrame].height/2 + tam);
 			break;
 		}
 	}

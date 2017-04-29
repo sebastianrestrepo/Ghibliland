@@ -55,12 +55,12 @@ public class Mundo {
 	 * @retorno void
 	 */
 	public void agregarCriaturasInicio() {
-		criaturas.add(new SinCara(this, 121, 145, 150));
-		criaturas.add(new Duende(this, 124, 349, 30));
-		criaturas.add(new Gato(this, 129, 571, 30));
-		criaturas.add(new Totoro(this, 574, 91, 30));
-		criaturas.add(new MiniTotoro(this, 572, 347, 30));
-		criaturas.add(new Kodama(this, 585, 592, 30));
+		criaturas.add(new SinCara(this, 121, 145, 10));
+		criaturas.add(new Duende(this, 124, 349, -15));
+		criaturas.add(new Gato(this, 129, 571, 10));
+		criaturas.add(new Totoro(this, 574, 91, 10));
+		criaturas.add(new MiniTotoro(this, 572, 347, 10));
+		criaturas.add(new Kodama(this, 585, 592, 15));
 		for (int i = 0; i < criaturas.size(); i++) {
 			capsulas.add(new Thread(criaturas.get(i)));
 		}
@@ -87,13 +87,13 @@ public class Mundo {
 		System.out.println(equipoNegro);
 		switch (equipoNegro) {
 		case 1:
-			criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 30));
+			criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 10));
 			break;
 		case 2:
 			criaturas.add(new Duende(this, app.width / 2 - 50, app.height / 4, 30));
 			break;
 		case 3:
-			criaturas.add(new Gato(this, app.width / 2 - 50, app.height / 4, 30));
+			criaturas.add(new Gato(this, app.width / 2 - 50, app.height / 4, 25));
 			break;
 		}
 		for (int i = 0; i < criaturas.size(); i++) {
