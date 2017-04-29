@@ -40,14 +40,18 @@ public class GatoBus {
 					numFrame = 0;
 				}
 			}
-			if (x>=0) {
-				x++;
-			}
 			
-			if (x>=app.width) {
-				x--;
-			}
 		
+	}
+	
+	public void mover(){
+		if (x>=0) {
+			x++;
+		}
+		
+		if (x>=app.width) {
+			x--;
+		}
 	}
 
 

@@ -17,6 +17,7 @@ public class Comida {
 		this.posX = posX;
 		this.posY = posY;
 		this.tam = tam;
+		this.app = app;
 		comida = (int) (1+Math.random()*4);
 	}
 	
