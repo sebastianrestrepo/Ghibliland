@@ -3,6 +3,8 @@ import processing.core.PImage;
 
 public class MiniTotoro extends Criatura implements BEncontrable {
 
+	private int numFrame;
+	
 	/*
 	 *  Constructor de MiniTotoro
 	 *  @parametro Mundo m

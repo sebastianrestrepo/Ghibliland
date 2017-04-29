@@ -10,7 +10,6 @@ public abstract class Criatura implements Runnable {
 	protected int ritmo;
 	protected Mundo m;
 	protected PImage[] criaturaFrontal, criaturaDer, criaturaIzq, criaturaPosterior;
-	protected int numFrame;
 	protected boolean vivo;
 	protected boolean huyendo;
 

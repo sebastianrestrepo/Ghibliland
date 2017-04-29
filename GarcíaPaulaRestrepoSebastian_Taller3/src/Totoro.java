@@ -3,6 +3,8 @@ import processing.core.PImage;
 
 public class Totoro extends Criatura implements BEncontrable {
 
+	private int numFrame;
+	
 	
 	/*
 	 *  Constructor de Totoro

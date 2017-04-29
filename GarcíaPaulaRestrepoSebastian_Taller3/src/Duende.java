@@ -3,6 +3,8 @@ import processing.core.PImage;
 
 public class Duende extends Criatura implements NEncontrable {
 	
+	private int numFrame;
+	
 	/*
 	 *  Constructor de Duende 
 	 *  @parametro Mundo m
