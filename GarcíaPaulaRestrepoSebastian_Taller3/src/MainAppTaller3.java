@@ -1,3 +1,5 @@
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
 import processing.core.PApplet;
 
 /*
@@ -9,7 +11,9 @@ import processing.core.PApplet;
 public class MainAppTaller3 extends PApplet {
 
 	private Mundo m;
-
+	private Minim minim;
+	private AudioPlayer totosong;
+	
 	public static void main(String[] args) {
 		PApplet.main("MainAppTaller3");
 	}
@@ -23,10 +27,20 @@ public class MainAppTaller3 extends PApplet {
 	public void setup() {
 		m = new Mundo(this);
 		m.cargarImagenes();
+		inicializarCancion();
+	}
+	
+	public void inicializarCancion(){
+		minim = new Minim(this);
+		totosong =  minim.loadFile("../data/Song.mp3");
+		totosong.loop();
+		
 	}
 
 	@Override
 	public void draw() {
+		totosong.play();
+
 		m.pintar();
 	}
 

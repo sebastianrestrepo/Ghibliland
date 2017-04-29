@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -15,6 +18,7 @@ public class Mundo {
 										// de las criaturas
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
+	
 
 	/*
 	 * Constructor de Mundo
@@ -29,7 +33,6 @@ public class Mundo {
 		anadirComidaInicial();
 		agregarCriaturasInicio();
 	}
-
 	/*
 	 * Metodo que se encargara de iniciar todas las variables y listas
 	 * 
@@ -67,7 +70,7 @@ public class Mundo {
 	public void anadirComidaInicial() {
 		for (int i = 0; i < 15; i++) {
 			comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30 + Math.random() * 560),
-					(int) (20 + Math.random() * 40)));
+					(int) (15 + Math.random() * 25)));
 		}
 	}
 
@@ -231,6 +234,7 @@ public class Mundo {
 	 * @retorno void
 	 */
 	public void pantallas() {
+		
 		switch (pantallas) {
 		case 0:
 			app.image(fondoInicio, app.width / 2, app.height / 2);
