@@ -52,5 +52,9 @@ public class MainAppTaller3 extends PApplet {
 	public void mouseReleased(){
 		println(mouseX, mouseY);
 	}
-
+	
+	@Override
+	public void stop() {
+	totosong.close();
+	}
 }

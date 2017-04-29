@@ -2,7 +2,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Comida {
-	
+	private PApplet app;
 	private int posX, posY, tam;
 	private int comida;
 	private PImage estrellaAmarilla, estrellaAzul, estrellaRoja, estrellaRosa, estrellaVioleta;
@@ -42,7 +42,7 @@ public class Comida {
 			app.image(estrellaAzul, posX, posY, tam, tam);
 			break;
 		case 3:
-			app.image(estrellaRosa, posX, posY, tam, tam);
+		app.image(estrellaRosa, posX, posY, tam, tam);
 			break;
 		case 4:
 			app.image(estrellaVioleta, posX, posY, tam, tam);

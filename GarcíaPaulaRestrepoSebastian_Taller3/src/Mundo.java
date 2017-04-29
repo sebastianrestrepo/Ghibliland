@@ -11,13 +11,14 @@ public class Mundo {
 	private int pantallas;
 	private int equipoNegro, equipoBlanco;
 	private PImage fondoInicio, instrucciones, fondoEsc, pasto;
-	private PImage[] enterUno, enterDos, luces;
-	private int numActual, numLuces;
+	private PImage[] enterUno, enterDos, luces, mitad;
+	private int numActual, numLuces, numFrame;
 	private ArrayList<Criatura> criaturas;
-	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos de las criaturas
+	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos
+										// de las criaturas
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
-	
+	private boolean addComida;
 
 	/*
 	 * Constructor de Mundo
@@ -32,6 +33,7 @@ public class Mundo {
 		anadirComidaInicial();
 		agregarCriaturasInicio();
 	}
+
 	/*
 	 * Metodo que se encargara de iniciar todas las variables y listas
 	 * 
@@ -42,6 +44,7 @@ public class Mundo {
 		comida = new ArrayList<Comida>();
 		gatobus = new GatoBus(0, app.height / 2, 50);
 		capsulas = new ArrayList<Thread>();
+		addComida = false;
 
 	}
 
@@ -54,7 +57,7 @@ public class Mundo {
 		criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 150));
 		criaturas.add(new Duende(this, app.width / 2 - 50, app.height / 4, 30));
 		criaturas.add(new Gato(this, app.width / 2 - 50, app.height / 4, 30));
-		criaturas.add(new Totoro(this, app.width / 2 +100, app.height / 4, 30));
+		criaturas.add(new Totoro(this, app.width / 2 + 100, app.height / 4, 30));
 		criaturas.add(new MiniTotoro(this, 200, 400, 30));
 		criaturas.add(new Kodama(this, 150, app.height / 4, 30));
 		for (int i = 0; i < criaturas.size(); i++) {
@@ -73,8 +76,7 @@ public class Mundo {
 			comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30 + Math.random() * 560),
 					(int) (15 + Math.random() * 25)));
 		}
-		
-	
+
 	}
 
 	public void anadirEquipoNegro() {
@@ -125,7 +127,15 @@ public class Mundo {
 		cargarLuces();
 		cargarCriaturas();
 		cargarComida();
+		cargarMitad();
 		gatobus.cargarCriatura(app);
+	}
+
+	public void cargarMitad() {
+		mitad = new PImage[14];
+		for (int i = 0; i < mitad.length; i++) {
+			mitad[i] = app.loadImage("../data/mitad/mitad_" + i + ".png");
+		}
 	}
 
 	/*
@@ -168,6 +178,42 @@ public class Mundo {
 	public void cargarComida() {
 		for (int i = 0; i < comida.size(); i++) {
 			comida.get(i).cargarComida(app);
+		}
+	}
+
+	public void pintar() {
+		pantallas();
+	}
+
+	/*
+	 * Método que se contendrá un switch que definirá los cambios pantallas
+	 * 
+	 * @retorno void
+	 */
+	public void pantallas() {
+
+		switch (pantallas) {
+		case 0:
+			app.image(fondoInicio, app.width / 2, app.height / 2);
+			pintarEnterUno();
+			break;
+		case 1:
+			app.image(fondoInicio, app.width / 2, app.height / 2);
+			app.image(instrucciones, app.width / 2, app.height / 2);
+			pintarEnterDos();
+			break;
+		case 2:
+			app.image(fondoEsc, app.width / 2, app.height / 2);
+			// pintarGato();
+			pintarComida();
+			cambioEstado();
+			pintarCriaturas();
+			pintarMitad();
+			agregarComida();
+			app.image(pasto, app.width / 2, app.height / 2);
+			pintarLuces();
+
+			break;
 		}
 	}
 
@@ -215,19 +261,19 @@ public class Mundo {
 	public void pintarCriaturas() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).pintar(app);
-			
 		}
+
 		darDeComer();
 	}
-	
-	//Método para pasarle el ArrayList de comida a las criaturas
+
+	// Método para pasarle el ArrayList de comida a las criaturas
 	public void darDeComer() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).comer(comida);
-			
+
 		}
 	}
-	
+
 	public void cambioEstado() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).cambioEstado(app);
@@ -240,40 +286,20 @@ public class Mundo {
 	 * 
 	 * @retorno void
 	 */
-	public void pintar() {
-		pantallas();
-	}
 
-	/*
-	 * Método que se contendrá un switch que definirá los cambios pantallas
-	 * 
-	 * @retorno void
-	 */
-	public void pantallas() {
-		
-		switch (pantallas) {
-		case 0:
-			app.image(fondoInicio, app.width / 2, app.height / 2);
-			pintarEnterUno();
-			break;
-		case 1:
-			app.image(fondoInicio, app.width / 2, app.height / 2);
-			app.image(instrucciones, app.width / 2, app.height / 2);
-			pintarEnterDos();
-			break;
-		case 2:
-			app.image(fondoEsc, app.width / 2, app.height / 2);
-			app.image(pasto, app.width / 2, app.height / 2);
-			pintarLuces();
-			// pintarGato();
-			pintarComida();
-			cambioEstado();
-			pintarCriaturas();
-			break;
+	public void agregarComida() {
+		if (app.frameCount % 150 == 0) {
+	//		for (int i = 0; i < 10; i++) {
+		//		comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30 + Math.random() * 560),
+			//			(int) (15 + Math.random() * 25)));
+		//	}
 		}
 	}
 
-	
+	public void pintarMitad() {
+		app.image(mitad[numFrame], app.width / 2, app.height / 2);
+	}
+
 	public void pintarGato() {
 		gatobus.pintar(app);
 	}
@@ -306,9 +332,9 @@ public class Mundo {
 	}
 
 	/*
-	 * Método que se removerá del ArrayList al elementos que esté huyendo justo
-	 * en el momento en que salda de la pantalla, lo sabrá por medio del boolean
-	 * 'huyendo'.
+	 * Método que se removerá del ArrayList al elementos que esté huyendo
+	 * justo en el momento en que salda de la pantalla, lo sabrá por medio del
+	 * boolean 'huyendo'.
 	 * 
 	 * @retorno void
 	 */
