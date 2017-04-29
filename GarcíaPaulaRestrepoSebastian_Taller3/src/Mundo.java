@@ -18,7 +18,7 @@ public class Mundo {
 										// de las criaturas
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
-	private boolean addComida;
+	private boolean reset;
 
 	/*
 	 * Constructor de Mundo
@@ -42,9 +42,9 @@ public class Mundo {
 	public void inicializarVariables() {
 		criaturas = new ArrayList<Criatura>();
 		comida = new ArrayList<Comida>();
-		gatobus = new GatoBus(0, app.height / 2, 50);
+		gatobus = new GatoBus(-150, app.height / 2-50, 50, this);
 		capsulas = new ArrayList<Thread>();
-		addComida = false;
+		reset = false;
 
 	}
 
@@ -216,13 +216,13 @@ public class Mundo {
 			break;
 		case 2:
 			app.image(fondoEsc, app.width / 2, app.height / 2);
-			pintarGato();
+			app.image(pasto, app.width / 2, app.height / 2);
 			pintarComida();
 			cambioEstado();
 			pintarCriaturas();
 			pintarMitad();
 			agregarComida();
-			app.image(pasto, app.width / 2, app.height / 2);
+			pintarGato();
 			pintarLuces();
 
 			break;
@@ -324,7 +324,11 @@ public class Mundo {
 	}
 
 	public void pintarGato() {
-		gatobus.pintar(app);
+		if (reset) {
+			gatobus.pintar(app);
+			gatobus.mover();
+			gatobus.reset();
+		}
 	}
 
 	/*
@@ -354,6 +358,10 @@ public class Mundo {
 			// Añadir equipo blanco
 			if (app.key == 'B' || app.key == 'b') {
 
+			}
+			
+			if (app.key == 'R' || app.key == 'r') {
+				reset =  true;
 			}
 			break;
 		}
