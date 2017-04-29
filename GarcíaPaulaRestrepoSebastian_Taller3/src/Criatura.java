@@ -47,6 +47,7 @@ public abstract class Criatura implements Runnable {
 					devuelvis();
 				}
 				encuentro();
+				remover();
 				Thread.sleep(ritmo);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -199,10 +200,11 @@ public abstract class Criatura implements Runnable {
 	public void remover() {
 		ArrayList<Criatura> refCriaturas = m.getCriaturas();
 		for (int i = 0; i < refCriaturas.size(); i++) {
+			Criatura ref = refCriaturas.get(i);
 			if (huyendo) {
-				if (refCriaturas.get(i).getPosX() < 0 || refCriaturas.get(i).getPosX() > 600
-						|| refCriaturas.get(i).getPosY() < 0 || refCriaturas.get(i).getPosY() > 600) {
-					//refCriaturas.get(i).remove();
+				if (ref.getPosX() < 0 || ref.getPosX() > 600 || ref.getPosY() < 0 || ref.getPosY() > 600) {
+					refCriaturas.remove(ref);
+					System.out.println(refCriaturas);
 				}
 			}
 		}
@@ -220,7 +222,6 @@ public abstract class Criatura implements Runnable {
 	}
 
 	public boolean calcularDistanciaComida() {
-
 		return true;
 	}
 	// FINAL DE LA CLASE CRIATURA
