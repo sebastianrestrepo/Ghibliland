@@ -46,6 +46,7 @@ public abstract class Criatura implements Runnable {
 				if (!huyendo) {
 					devuelvis();
 				}
+				devuelvisMitad();
 				encuentro();
 				remover();
 				Thread.sleep(ritmo);
@@ -171,6 +172,29 @@ public abstract class Criatura implements Runnable {
 			estado = 0;
 		}
 	}
+	
+	public void devuelvisMitad() {
+		// abajo
+		if (estado == 0 && posX >= 300 && posX <= 412 && posY >= 322 && posY <= 412) {
+			estado = 3;
+			System.out.println("Devuelvis abajo");
+		}
+		// derecha
+		if (estado == 1 && posX >= 300 && posX <= 412 && posY >= 322 && posY <= 412) {
+			estado = 2;
+			System.out.println("Devuelvis der");
+		}
+		// izquierda
+		if (estado == 2 && posX >= 300 && posX <= 412 && posY >= 322 && posY <= 412) {
+			estado = 1;
+			System.out.println("Devuelvis izq");
+		}
+		// arriba
+		if (estado == 3 && posX >= 300 && posX <= 412 && posY >= 322 && posY <= 412) {
+			estado = 0;
+			System.out.println("Devuelvis arriba");
+		}
+	}
 
 	/*
 	 * Método que se encarga de definir que cuando una criatura pasé por encima
@@ -203,7 +227,7 @@ public abstract class Criatura implements Runnable {
 		for (int i = 0; i < refCriaturas.size(); i++) {
 			Criatura ref = refCriaturas.get(i);
 			if (huyendo) {
-				if (ref.getPosX() < -30 || ref.getPosX() > 630 || ref.getPosY() < -30 || ref.getPosY() > 630) {
+				if (ref.getPosX() < -30 || ref.getPosX() > 730 || ref.getPosY() < -30 || ref.getPosY() > 730) {
 					refCriaturas.remove(ref);
 					System.out.println(refCriaturas);
 				}

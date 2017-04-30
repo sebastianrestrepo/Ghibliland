@@ -2,6 +2,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Comida {
+	
 	private PApplet app;
 	private int posX, posY, tam;
 	private int comida;
@@ -17,11 +18,11 @@ public class Comida {
 		this.posX = posX;
 		this.posY = posY;
 		this.tam = tam;
-		this.app = app;
 		comida = (int) (1+Math.random()*4);
 	}
 	
 	public void cargarComida(PApplet app){
+		this.app = app;
 		estrellaAmarilla = app.loadImage("../data/estrellas/estrellaAmarilla.png");
 		estrellaAzul = app.loadImage("../data/estrellas/estrellaAzul.png");
 		estrellaRosa = app.loadImage("../data/estrellas/estrellaRosa.png");
@@ -35,6 +36,7 @@ public class Comida {
 	 *	@retorno void 
 	 */
 	public void pintar(PApplet app){
+		this.app = app;
 		switch(comida){
 		case 1:
 			app.image(estrellaAmarilla, posX, posY, tam, tam);
@@ -43,7 +45,7 @@ public class Comida {
 			app.image(estrellaAzul, posX, posY, tam, tam);
 			break;
 		case 3:
-		app.image(estrellaRosa, posX, posY, tam, tam);
+		    app.image(estrellaRosa, posX, posY, tam, tam);
 			break;
 		case 4:
 			app.image(estrellaVioleta, posX, posY, tam, tam);

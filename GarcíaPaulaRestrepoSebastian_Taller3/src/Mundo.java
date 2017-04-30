@@ -30,9 +30,9 @@ public class Mundo {
 		this.app = app;
 		app.imageMode(app.CENTER);
 		inicializarVariables();
-		cargarComida();
 		anadirComidaInicial();
 		agregarCriaturasInicio();
+		cargarImagenes();
 	}
 
 	/*
@@ -67,7 +67,7 @@ public class Mundo {
 	}
 
 	/*
-	 * Metodo que se encargara de añadir la comida que estará incialmene en el
+	 * Metodo que se encargara de aï¿½adir la comida que estarï¿½ incialmene en el
 	 * lienzo
 	 * 
 	 * @retorno void
@@ -105,7 +105,7 @@ public class Mundo {
 	}
 
 	/*
-	 * Método que se encargará de iniciar y encapsular los Hilos
+	 * Mï¿½todo que se encargarï¿½ de iniciar y encapsular los Hilos
 	 * 
 	 * @retorno void
 	 */
@@ -199,7 +199,7 @@ public class Mundo {
 	}
 
 	/*
-	 * Método que se contendrá un switch que definirá los cambios pantallas
+	 * Mï¿½todo que se contendrï¿½ un switch que definirï¿½ los cambios pantallas
 	 * 
 	 * @retorno void
 	 */
@@ -289,7 +289,7 @@ public class Mundo {
 		darDeComer();
 	}
 
-	// Método para pasarle el ArrayList de comida a las criaturas
+	// Mï¿½todo para pasarle el ArrayList de comida a las criaturas
 	public void darDeComer() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).comer(comida);
@@ -304,19 +304,19 @@ public class Mundo {
 	}
 
 	/*
-	 * Método que se encargará de llamar a todos los pintar que vienen de las
-	 * otras clases y que será llamado en el Ejectuable en el draw
+	 * Mï¿½todo que se encargarï¿½ de llamar a todos los pintar que vienen de las
+	 * otras clases y que serï¿½ llamado en el Ejectuable en el draw
 	 * 
 	 * @retorno void
 	 */
 
 	public void agregarComida() {
 		if (app.frameCount % 150 == 0) {
-			// for (int i = 0; i < 10; i++) {
-			// comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30
-			// + Math.random() * 560),
-			// (int) (15 + Math.random() * 25)));
-			// }
+			//for (int i = 0; i < 10; i++) {
+			//comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30
+			//+ Math.random() * 560),
+			//(int) (15 + Math.random() * 25)));
+			//}
 		}
 	}
 
@@ -331,8 +331,8 @@ public class Mundo {
 	}
 
 	/*
-	 * Método que se encargará de los eventos del teclado otras clases y que
-	 * será llamado en el Ejectuable en el keyReleased
+	 * Mï¿½todo que se encargarï¿½ de los eventos del teclado otras clases y que
+	 * serï¿½ llamado en el Ejectuable en el keyReleased
 	 * 
 	 * @retorno void
 	 */
@@ -350,11 +350,11 @@ public class Mundo {
 			}
 			break;
 		case 2:
-			// Añadir equipo negro
+			// Aï¿½adir equipo negro
 			if (app.key == 'N' || app.key == 'n') {
 				anadirEquipoNegro();
 			}
-			// Añadir equipo blanco
+			// Aï¿½adir equipo blanco
 			if (app.key == 'B' || app.key == 'b') {
 
 			}
