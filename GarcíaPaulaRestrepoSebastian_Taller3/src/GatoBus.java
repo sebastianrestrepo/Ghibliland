@@ -81,16 +81,16 @@ public class GatoBus implements Runnable {
 		switch (mover) {
 		case 1:
 			if (x < 750) {
-				x += 5;
-				y += 0.5;
+				x += 7;
+				y += 1.5;
 			}else{
 				mover = 2;
 			}
 			break;
 		case 2:
 			if (x > -50) {
-				x -= 5;
-				y += 0.5;
+				x -= 7;
+				y += 1.5;
 			}else{
 				mover = 1;
 			}
@@ -103,7 +103,7 @@ public class GatoBus implements Runnable {
 		ArrayList<Criatura> refC = m.getCriaturas();
 		for (int i = 0; i < refC.size(); i++) {
 			Criatura ref = refC.get(i);
-			if (PApplet.dist(x, y, ref.getPosX(), ref.getPosY()) < 110) {
+			if (y>760) {
 				refC.remove(ref);
 			}
 		}
@@ -111,7 +111,7 @@ public class GatoBus implements Runnable {
 		ArrayList<Comida> refCo = m.getComida();
 		for (int i = 0; i < refCo.size(); i++) {
 			Comida ref = refCo.get(i);
-			if (PApplet.dist(x, y, ref.getPosX(), ref.getPosY()) < 110) {
+			if (y>760) {
 				refCo.remove(ref);
 			}
 		}
