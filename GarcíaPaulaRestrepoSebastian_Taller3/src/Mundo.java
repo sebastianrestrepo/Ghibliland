@@ -19,7 +19,7 @@ public class Mundo {
 	private Thread capsulaGatoBus;
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
-	private boolean reset;
+	private boolean reset, resetP;
 
 	/*
 	 * Constructor de Mundo
@@ -43,10 +43,11 @@ public class Mundo {
 	public void inicializarVariables() {
 		criaturas = new ArrayList<Criatura>();
 		comida = new ArrayList<Comida>();
-		gatobus = new GatoBus(-30, 100, 50, this, reset);
+		gatobus = new GatoBus(-149, 100, 50, this, reset);
 		capsulas = new ArrayList<Thread>();
 		reset = false;
-			
+		resetP = false;
+
 	}
 
 	/*
@@ -56,7 +57,7 @@ public class Mundo {
 	 */
 	public void agregarCriaturasInicio() {
 		criaturas.add(new SinCara(this, 121, 145, 10));
-		criaturas.add(new Duende(this, 124, 349, -15));
+		criaturas.add(new Duende(this, 124, 349, -20));
 		criaturas.add(new Gato(this, 129, 571, 10));
 		criaturas.add(new Totoro(this, 574, 91, 10));
 		criaturas.add(new MiniTotoro(this, 572, 347, 10));
@@ -67,8 +68,8 @@ public class Mundo {
 	}
 
 	/*
-	 * Metodo que se encargara de a�adir la comida que estar� incialmene en el
-	 * lienzo
+	 * Metodo que se encargara de a�adir la comida que estar� incialmene en
+	 * el lienzo
 	 * 
 	 * @retorno void
 	 */
@@ -199,7 +200,8 @@ public class Mundo {
 	}
 
 	/*
-	 * M�todo que se contendr� un switch que definir� los cambios pantallas
+	 * M�todo que se contendr� un switch que definir� los cambios
+	 * pantallas
 	 * 
 	 * @retorno void
 	 */
@@ -304,19 +306,19 @@ public class Mundo {
 	}
 
 	/*
-	 * M�todo que se encargar� de llamar a todos los pintar que vienen de las
-	 * otras clases y que ser� llamado en el Ejectuable en el draw
+	 * M�todo que se encargar� de llamar a todos los pintar que vienen de
+	 * las otras clases y que ser� llamado en el Ejectuable en el draw
 	 * 
 	 * @retorno void
 	 */
 
 	public void agregarComida() {
 		if (app.frameCount % 150 == 0) {
-			//for (int i = 0; i < 10; i++) {
-			//comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30
-			//+ Math.random() * 560),
-			//(int) (15 + Math.random() * 25)));
-			//}
+			// for (int i = 0; i < 10; i++) {
+			// comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30
+			// + Math.random() * 560),
+			// (int) (15 + Math.random() * 25)));
+			// }
 		}
 	}
 
@@ -325,7 +327,7 @@ public class Mundo {
 	}
 
 	public void pintarGato() {
-		if (reset) {
+		if (resetP) {
 			gatobus.pintar(app);
 		}
 	}
@@ -336,7 +338,7 @@ public class Mundo {
 	 * 
 	 * @retorno void
 	 */
-	public void teclas() {
+	public void teclas()  {
 		switch (pantallas) {
 		case 0:
 			if (app.keyCode == app.ENTER) {
@@ -360,7 +362,10 @@ public class Mundo {
 			}
 
 			if (app.key == 'R' || app.key == 'r') {
+				Thread gb = new Thread(gatobus);
+				gb.start();
 				reset = true;
+				resetP = true;
 				System.out.println("boolean" + reset);
 				System.out.println("gatoX" + gatobus.getX());
 				iniciarHiloGato();
@@ -370,13 +375,11 @@ public class Mundo {
 		}
 	}
 
-	
-
-	public void iniciarHiloGato() {
+	public void iniciarHiloGato()  {
 		if (reset) {
-			Thread gb = new Thread(gatobus);
-			gb.start();
+			
 		}
+
 	}
 
 	// GETTERS Y SETTERS
@@ -396,4 +399,14 @@ public class Mundo {
 		this.comida = comida;
 	}
 
+	public void setReset(boolean reset) {
+		this.reset = reset;
+	}
+	public void setResetP(boolean resetP) {
+		this.resetP = resetP;
+	}
+	
+	public boolean getResetP(){
+		return resetP;
+	}
 }
