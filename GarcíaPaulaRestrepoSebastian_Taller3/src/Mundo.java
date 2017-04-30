@@ -43,7 +43,7 @@ public class Mundo {
 	public void inicializarVariables() {
 		criaturas = new ArrayList<Criatura>();
 		comida = new ArrayList<Comida>();
-		gatobus = new GatoBus(150, app.height / 2 - 50, 50, this, reset);
+		gatobus = new GatoBus(-30, 100, 50, this, reset);
 		capsulas = new ArrayList<Thread>();
 		reset = false;
 			

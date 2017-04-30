@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class GatoBus implements Runnable{
+public class GatoBus implements Runnable {
 	private PImage[] criatura;
 	private int numFrame;
 	private PApplet app;
@@ -12,8 +12,8 @@ public class GatoBus implements Runnable{
 	private ArrayList<Criatura> c;
 	private boolean reset;
 	private boolean vivo;
-
-	private int x, y;
+	private int mover;
+	private float x, y;
 
 	/*
 	 * Constructor de GatoBus
@@ -24,12 +24,13 @@ public class GatoBus implements Runnable{
 	 * 
 	 * @parametro int tam
 	 */
-	public GatoBus(int posX, int posY, int tam, Mundo m, boolean reset) {
+	public GatoBus(float posX, float posY, int tam, Mundo m, boolean reset) {
 		this.x = posX;
 		this.y = posY;
 		this.m = m;
-		this.reset= reset;
-		vivo= true;
+		this.reset = reset;
+		vivo = true;
+		mover = 1;
 	}
 
 	public void cargarCriatura(PApplet app) {
@@ -66,21 +67,34 @@ public class GatoBus implements Runnable{
 			try {
 				mover();
 				reset();
-			//	System.out.println("reseteandooooo");
+				// System.out.println("reseteandooooo");
 				Thread.sleep(33);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-		}		
+		}
 	}
+
 	public void mover() {
-		if (x >= -150) {
-			x += 3;
-			 if (x >= app.width + 150) {
-					x = -150;
-				}
+		switch (mover) {
+		case 1:
+			if (x < 750) {
+				x += 5;
+				y += 0.5;
+			}else{
+				mover = 2;
+			}
+			break;
+		case 2:
+			if (x > -50) {
+				x -= 5;
+				y += 0.5;
+			}else{
+				mover = 1;
+			}
+			break;
 		}
 	}
 
@@ -93,7 +107,7 @@ public class GatoBus implements Runnable{
 				refC.remove(ref);
 			}
 		}
-		
+
 		ArrayList<Comida> refCo = m.getComida();
 		for (int i = 0; i < refCo.size(); i++) {
 			Comida ref = refCo.get(i);
@@ -103,12 +117,12 @@ public class GatoBus implements Runnable{
 		}
 	}
 
-	
-	public int getX() {
+	// GETTERS Y SETTERS
+	public float getX() {
 		return x;
 	}
-	
-	public int getY() {
+
+	public float getY() {
 		return y;
 	}
 }
