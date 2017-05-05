@@ -10,6 +10,7 @@ public class Mundo {
 	private PApplet app;
 	private int pantallas;
 	private int equipoNegro, equipoBlanco;
+	private Cargar cargar;
 	private PImage fondoInicio, instrucciones, fondoEsc, pasto;
 	private PImage[] enterUno, enterDos, luces, mitad, titulo;
 	private int numActual, numLuces, numFrame, numTitulo;
@@ -31,9 +32,11 @@ public class Mundo {
 		app.imageMode(app.CENTER);
 		inicializarVariables();
 		anadirComidaInicial();
-		agregarCriaturasInicio();
+	//	agregarCriaturasInicio();
 		cargarImagenes();
 	}
+	
+	
 
 	/*
 	 * Metodo que se encargara de iniciar todas las variables y listas
@@ -45,6 +48,7 @@ public class Mundo {
 		comida = new ArrayList<Comida>();
 		gatobus = new GatoBus(-149, 100, 50, this, reset);
 		capsulas = new ArrayList<Thread>();
+		cargar = new Cargar(app);
 		reset = false;
 		resetP = false;
 
@@ -64,6 +68,9 @@ public class Mundo {
 		criaturas.add(new Kodama(this, 585, 592, 15));
 		for (int i = 0; i < criaturas.size(); i++) {
 			capsulas.add(new Thread(criaturas.get(i)));
+				if (criaturas.get(i) !=null) {
+					capsulas.get(i).start();
+			}
 		}
 	}
 
@@ -82,10 +89,9 @@ public class Mundo {
 	}
 
 	public void anadirEquipoNegro() {
-
-		equipoNegro = (int) (1 + Math.random() * 2);
+	//	equipoNegro = (int) (1 + Math.random() * 2);
 		equipoNegro = (int) (1 + Math.random() * 3);
-		System.out.println(equipoNegro);
+	//	System.out.println(equipoNegro);
 		switch (equipoNegro) {
 		case 1:
 			criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 10));
@@ -97,12 +103,35 @@ public class Mundo {
 			criaturas.add(new Gato(this, app.width / 2 - 50, app.height / 4, 25));
 			break;
 		}
-		for (int i = 0; i < criaturas.size(); i++) {
-			capsulas.add(new Thread(criaturas.get(i)));
-			if (capsulas.get(i).getState() == Thread.State.NEW) {
-				capsulas.get(i).start();
+		
+			Thread temp = new Thread(criaturas.get(criaturas.size()-1));
+			if (temp.getState() == Thread.State.NEW) {
+				temp.start();
 			}
+			capsulas.add(temp);		
+	}
+	
+	public void anadirEquipoBlanco() {
+	//	equipoNegro = (int) (1 + Math.random() * 2);
+		equipoBlanco = (int) (1 + Math.random() * 3);
+	//	System.out.println(equipoNegro);
+		switch (equipoBlanco) {
+		case 1:
+			criaturas.add(new Totoro(this, app.width / 2 + 50, app.height / 3, 10));
+			break;
+		case 2:
+			criaturas.add(new MiniTotoro(this, app.width / 2 - 50, app.height / 4, 10));
+			break;
+		case 3:
+			criaturas.add(new Kodama(this, app.width / 2 - 50, app.height / 4, 15));
+			break;
 		}
+		
+			Thread temp = new Thread(criaturas.get(criaturas.size()-1));
+			if (temp.getState() == Thread.State.NEW) {
+				temp.start();
+			}
+			capsulas.add(temp);		
 	}
 
 	/*
@@ -130,7 +159,7 @@ public class Mundo {
 		cargarEnterUno();
 		cargarEnterDos();
 		cargarLuces();
-		cargarCriaturas();
+		//cargarCriaturas();
 		cargarComida();
 		cargarMitad();
 		caragarTitulo();
@@ -149,17 +178,6 @@ public class Mundo {
 		mitad = new PImage[14];
 		for (int i = 0; i < mitad.length; i++) {
 			mitad[i] = app.loadImage("../data/mitad/mitad_" + i + ".png");
-		}
-	}
-
-	/*
-	 * Metodo que se encargara de cargar a todos los tipos de criaturas
-	 * 
-	 * @retorno void
-	 */
-	public void cargarCriaturas() {
-		for (int i = 0; i < criaturas.size(); i++) {
-			criaturas.get(i).cargar(app);
 		}
 	}
 
@@ -228,7 +246,6 @@ public class Mundo {
 			agregarComida();
 			pintarGato();
 			pintarLuces();
-
 			break;
 		}
 	}
@@ -347,7 +364,8 @@ public class Mundo {
 			break;
 		case 1:
 			if (app.keyCode == app.ENTER) {
-				iniciarHilos();
+				agregarCriaturasInicio();
+		//		iniciarHilos();
 				pantallas = 2;
 			}
 			break;
@@ -358,7 +376,7 @@ public class Mundo {
 			}
 			// A�adir equipo blanco
 			if (app.key == 'B' || app.key == 'b') {
-
+				anadirEquipoBlanco();
 			}
 
 			if (app.key == 'R' || app.key == 'r') {
@@ -370,7 +388,7 @@ public class Mundo {
 				System.out.println("gatoX" + gatobus.getX());
 				iniciarHiloGato();
 
-			}
+			}                                              
 			break;
 		}
 	}
@@ -409,4 +427,20 @@ public class Mundo {
 	public boolean getResetP(){
 		return resetP;
 	}
+
+
+
+	public Cargar getCargar() {
+		return cargar;
+	}
+
+
+
+	public void setCargar(Cargar cargar) {
+		this.cargar = cargar;
+	}
+	
+	
+	
+	//FINAL DE LA CLASE MUNDO
 }

@@ -20,31 +20,15 @@ public class SinCara extends Criatura implements NEncontrable {
 	 */
 	public SinCara(Mundo m, int posX, int posY, int tam) {
 		super(m, posX, posY, tam);
+		criaturaFrontal = m.getCargar().getCriaturaFrontalSinCara();
+		criaturaDer = m.getCargar().getCriaturaDerSinCara();
+		criaturaIzq = m.getCargar().getCriaturaIzqSinCara();
+		criaturaPosterior = m.getCargar().getCriaturaPosteriorSinCara();
 	}
 
 	public void cargar(PApplet app) {
 		this.app = app;
-		// Frontal
-		criaturaFrontal = new PImage[19];
-		for (int i = 0; i < criaturaFrontal.length; i++) {
-			criaturaFrontal[i] = app.loadImage("../data/personajes/sinCara/sinCaraFrontal/No Face_" + i + ".png");
-		}
-		// Izquierda
-		criaturaIzq = new PImage[19];
-		for (int i = 0; i < criaturaIzq.length; i++) {
-			criaturaIzq[i] = app.loadImage("../data/personajes/sinCara/sinCaraIzq/No Face Izq_" + i + ".png");
-		}
-		// Derecha
-		criaturaDer = new PImage[19];
-		for (int i = 0; i < criaturaDer.length; i++) {
-			criaturaDer[i] = app.loadImage("../data/personajes/sinCara/sinCaraDer/No Face Der_" + i + ".png");
-		}
-		// Posterior
-		criaturaPosterior = new PImage[15];
-		for (int i = 0; i < criaturaPosterior.length; i++) {
-			criaturaPosterior[i] = app
-					.loadImage("../data/personajes/sinCara/sinCaraPosterior/No Face posterior_" + i + ".png");
-		}
+
 	}
 
 	/*
@@ -91,11 +75,16 @@ public class SinCara extends Criatura implements NEncontrable {
 	 * @retorno void
 	 */
 	public void pintar(PApplet app) {
+	
 		this.app = app;
 		switch (estado) {
 		case 0:
+			/*System.out.println("LETERRITO: " + criaturaFrontal);
+			app.println(criaturaFrontal);
+			System.out.println("-----");*/
 			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width / 2 + tam,
 					criaturaFrontal[numFrame].height / 2 + tam);
+			
 			break;
 		case 1:
 			app.image(criaturaDer[numFrame], posX, posY, criaturaDer[numFrame].width / 2 + tam,

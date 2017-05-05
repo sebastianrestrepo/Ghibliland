@@ -34,6 +34,7 @@ public abstract class Criatura implements Runnable {
 		this.tam = tam;
 		vivo = true;
 		huyendo = false;
+		estado=0;
 		ritmo = 66;
 	}
 
@@ -156,6 +157,7 @@ public abstract class Criatura implements Runnable {
 	 */
 	public void devuelvis() {
 		// abajo
+	try{
 		if (estado == 0 && posY >= app.height - 90) {
 			estado = 3;
 		}
@@ -171,6 +173,9 @@ public abstract class Criatura implements Runnable {
 		if (estado == 3 && posY <= 90) {
 			estado = 0;
 		}
+	}catch (Exception e) {
+		// TODO: no hacer esto....
+	}
 	}
 	
 	public void devuelvisMitad() {

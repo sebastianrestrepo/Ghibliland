@@ -20,30 +20,15 @@ public class Totoro extends Criatura implements BEncontrable {
 	 */
 	public Totoro(Mundo m, int posX, int posY, int tam) {
 		super(m, posX, posY, tam);
+		criaturaFrontal = m.getCargar().getCriaturaFrontalTotoro();
+		criaturaDer = m.getCargar().getCriaturaDerTotoro();
+		criaturaIzq = m.getCargar().getCriaturaIzqTotoro();
+		criaturaPosterior = m.getCargar().getCriaturaPosteriorTotoro();
 	}
 
 	public void cargar(PApplet app) {
 		this.app = app;
-		// Frontal
-		criaturaFrontal = new PImage[14];
-		for (int i = 0; i < criaturaFrontal.length; i++) {
-			criaturaFrontal[i] = app.loadImage("../data/personajes/Totoro/TotoFrente/TotoF_" + i + ".png");
-		}
-		// Izquierda
-		criaturaIzq = new PImage[14];
-		for (int i = 0; i < criaturaIzq.length; i++) {
-			criaturaIzq[i] = app.loadImage("../data/personajes/Totoro/TotoroIz/TotoroIz_" + i + ".png");
-		}
-		// Derecha
-		criaturaDer = new PImage[14];
-		for (int i = 0; i < criaturaDer.length; i++) {
-			criaturaDer[i] = app.loadImage("../data/personajes/Totoro/TotoroDe/TotoroDe_" + i + ".png");
-		}
-		// Posterior
-		criaturaPosterior = new PImage[14];
-		for (int i = 0; i < criaturaPosterior.length; i++) {
-			criaturaPosterior[i] = app.loadImage("../data/personajes/Totoro/TotoroEs/TotoroEs_" + i + ".png");
-		}
+
 	}
 
 	@Override

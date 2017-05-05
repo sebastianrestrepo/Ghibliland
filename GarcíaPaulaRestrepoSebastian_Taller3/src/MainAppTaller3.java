@@ -26,20 +26,19 @@ public class MainAppTaller3 extends PApplet {
 	@Override
 	public void setup() {
 		m = new Mundo(this);
-		m.cargarImagenes();
 		inicializarCancion();
 	}
 	
 	public void inicializarCancion(){
 		minim = new Minim(this);
 		totosong =  minim.loadFile("../data/Song.mp3",256);
-		totosong.loop();
+	//	totosong.loop();
 		
 	}
 
 	@Override
 	public void draw() {
-		totosong.play();
+	//	totosong.play();
 		m.pintar();
 		//fill(255, 0, 0);
 		//rectMode(CENTER);

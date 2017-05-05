@@ -20,32 +20,16 @@ public class Kodama extends Criatura implements BEncontrable {
 	 */
 	public Kodama(Mundo m, int posX, int posY, int tam) {
 		super(m, posX, posY, tam);
-
 		numFrameDer = 3;
+		criaturaFrontal = m.getCargar().getCriaturaFrontalKodama();
+		criaturaDer = m.getCargar().getCriaturaDerKodama();
+		criaturaIzq = m.getCargar().getCriaturaIzqKodama();
+		criaturaPosterior = m.getCargar().getCriaturaPosteriorKodama();
 	}
 
 	public void cargar(PApplet app) {
 		this.app = app;
-		// Frontal
-		criaturaFrontal = new PImage[33];
-		for (int i = 0; i < criaturaFrontal.length; i++) {
-			criaturaFrontal[i] = app.loadImage("../data/personajes/Kodama/KodamaF/KodamaF_" + i + ".png");
-		}
-		// Izquierda
-		criaturaIzq = new PImage[39];
-		for (int i = 0; i < criaturaIzq.length; i++) {
-			criaturaIzq[i] = app.loadImage("../data/personajes/Kodama/KodamaIz/KodamaIz_" + i + ".png");
-		}
-		// Derecha
-		criaturaDer = new PImage[36];
-		for (int i = 3; i < criaturaDer.length; i++) {
-			criaturaDer[i] = app.loadImage("../data/personajes/Kodama/KodamaDe/KodamaDe_" + i + ".png");
-		}
-		// Posterior
-		criaturaPosterior = new PImage[33];
-		for (int i = 0; i < criaturaPosterior.length; i++) {
-			criaturaPosterior[i] = app.loadImage("../data/personajes/Kodama/KodamaEs/KodamaEs_" + i + ".png");
-		}
+
 	}
 
 	@Override

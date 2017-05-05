@@ -21,30 +21,16 @@ public class Gato extends Criatura implements NEncontrable {
 	public Gato(Mundo m, int posX, int posY, int tam) {
 		super(m, posX, posY, tam);
 		// TODO Auto-generated constructor stub
+		criaturaFrontal = m.getCargar().getCriaturaFrontalGato();
+		criaturaDer = m.getCargar().getCriaturaDerGato();
+		criaturaIzq = m.getCargar().getCriaturaIzqGato();
+		criaturaPosterior = m.getCargar().getCriaturaPosteriorGato();
 	}
 
 	public void cargar(PApplet app) {
 		this.app = app;
 		// Frontal
-		criaturaFrontal = new PImage[29];
-		for (int i = 0; i < criaturaFrontal.length; i++) {
-			criaturaFrontal[i] = app.loadImage("../data/personajes/jiji/jijiFrontal/jijiFrontal_" + i + ".png");
-		}
-		// Izquierda
-		criaturaIzq = new PImage[9];
-		for (int i = 0; i < criaturaIzq.length; i++) {
-			criaturaIzq[i] = app.loadImage("../data/personajes/jiji/jijiIzq/jijiIzq_" + i + ".png");
-		}
-		// Derecha
-		criaturaDer = new PImage[9];
-		for (int i = 0; i < criaturaDer.length; i++) {
-			criaturaDer[i] = app.loadImage("../data/personajes/jiji/jijiDer/jijiDer_" + i + ".png");
-		}
-		// Posterior
-		criaturaPosterior = new PImage[29];
-		for (int i = 0; i < criaturaPosterior.length; i++) {
-			criaturaPosterior[i] = app.loadImage("../data/personajes/jiji/jijiPosterior/jijiPosterior_" + i + ".png");
-		}
+
 	}
 
 	@Override
@@ -93,7 +79,6 @@ public class Gato extends Criatura implements NEncontrable {
 		this.app = app;
 		switch (estado) {
 		case 0:
-			// System.out.println("numFrame: " + numFrame);
 			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width/2 + tam,
 					criaturaFrontal[numFrame].height/2 + tam);
 			break;

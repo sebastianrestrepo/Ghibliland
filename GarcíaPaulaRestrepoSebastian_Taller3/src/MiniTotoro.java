@@ -23,38 +23,21 @@ public class MiniTotoro extends Criatura implements BEncontrable {
 
 	public MiniTotoro(Mundo m, int posX, int posY, int tam) {
 		super(m, posX, posY, tam);
-
 		numFrameCuatro = 4;
+		criaturaFrontal = m.getCargar().getCriaturaFrontalMiniTotoro();
+		criaturaDer = m.getCargar().getCriaturaDerMiniTotoro();
+		criaturaIzq = m.getCargar().getCriaturaIzqMiniTotoro();
+		criaturaPosterior = m.getCargar().getCriaturaPosteriorMiniTotoro();
 	}
 
 	public void cargar(PApplet app) {
 		this.app = app;
-		// Frontal
-		criaturaFrontal = new PImage[15];
-		for (int i = 4; i < criaturaFrontal.length; i++) {
-			criaturaFrontal[i] = app.loadImage("../data/personajes/Minitoto/MiniTotoF/MinitotoF_" + i + ".png");
-		}
-		// Izquierda
-		criaturaIzq = new PImage[11];
-		for (int i = 0; i < criaturaIzq.length; i++) {
-			criaturaIzq[i] = app.loadImage("../data/personajes/Minitoto/MiniTotoIz/MiniTotoIz_" + i + ".png");
-		}
-		// Derecha
-		criaturaDer = new PImage[11];
-		for (int i = 0; i < criaturaDer.length; i++) {
-			criaturaDer[i] = app.loadImage("../data/personajes/Minitoto/MiniTotoDe/MinitotoDe_" + i + ".png");
-		}
-		// Posterior
-		criaturaPosterior = new PImage[15];
-		for (int i = 4; i < criaturaPosterior.length; i++) {
-			criaturaPosterior[i] = app.loadImage("../data/personajes/Minitoto/MiniTotoEs/MinitotoEs_" + i + ".png");
-		}
+
 	}
 
 	@Override
 	public void calculo() {
 		switch (estado) {
-
 		case 0:
 			numFrameCuatro++;
 			if (numFrameCuatro >= 15) {

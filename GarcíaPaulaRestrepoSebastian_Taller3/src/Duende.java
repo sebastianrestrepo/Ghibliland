@@ -20,9 +20,13 @@ public class Duende extends Criatura implements NEncontrable {
 	 */
 	public Duende(Mundo m, int posX, int posY, int tam) {
 		super(m, posX, posY, tam);
+		criaturaFrontal = m.getCargar().getCriaturaFrontalDuende();
+		criaturaDer = m.getCargar().getCriaturaDerDuende();
+		criaturaIzq = m.getCargar().getCriaturaIzqDuende();
+		criaturaPosterior = m.getCargar().getCriaturaPosteriorDuende();
 	}
 
-	public void cargar(PApplet app) {
+	/*public void cargar(PApplet app) {
 		this.app = app;
 		// Frontal
 		criaturaFrontal = new PImage[11];
@@ -45,8 +49,38 @@ public class Duende extends Criatura implements NEncontrable {
 			criaturaPosterior[i] = app
 					.loadImage("../data/personajes/duende/duendePosterior/Duende posterior_" + i + ".png");
 		}
+		
+		System.out.println("CARGA: " + criaturaFrontal);
+		app.println(criaturaFrontal);
+		System.out.println("-----");
+	}*/
+	/*
+	 * Método que se encargará de pintar las secuencias de imagenes de los
+	 * personajes
+	 * 
+	 * @parametro PApplet app
+	 * 
+	 * @retorno void
+	 */
+	public void pintar(PApplet app) {
+		this.app = app;
+		switch (estado) {
+		case 0:
+			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width/2+ tam,
+					criaturaFrontal[numFrame].height/2+ tam);
+			break;
+		case 1:
+			app.image(criaturaDer[numFrame], posX, posY,criaturaDer[numFrame].width/2 + tam, criaturaDer[numFrame].height/2 + tam);
+			break;
+		case 2:
+			app.image(criaturaIzq[numFrame], posX, posY, criaturaIzq[numFrame].width/2 + tam, criaturaIzq[numFrame].height/2 + tam);
+			break;
+		case 3:
+			app.image(criaturaPosterior[numFrame], posX, posY, criaturaPosterior[numFrame].width/2 + tam,
+					criaturaPosterior[numFrame].height/2 + tam);
+			break;
+		}
 	}
-
 	@Override
 	public void calculo() {
 		switch (estado) {
@@ -77,33 +111,7 @@ public class Duende extends Criatura implements NEncontrable {
 		}
 	}
 
-	/*
-	 * Método que se encargará de pintar las secuencias de imagenes de los
-	 * personajes
-	 * 
-	 * @parametro PApplet app
-	 * 
-	 * @retorno void
-	 */
-	public void pintar(PApplet app) {
-		this.app = app;
-		switch (estado) {
-		case 0:
-			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width/2+ tam,
-					criaturaFrontal[numFrame].height/2+ tam);
-			break;
-		case 1:
-			app.image(criaturaDer[numFrame], posX, posY,criaturaDer[numFrame].width/2 + tam, criaturaDer[numFrame].height/2 + tam);
-			break;
-		case 2:
-			app.image(criaturaIzq[numFrame], posX, posY, criaturaIzq[numFrame].width/2 + tam, criaturaIzq[numFrame].height/2 + tam);
-			break;
-		case 3:
-			app.image(criaturaPosterior[numFrame], posX, posY, criaturaPosterior[numFrame].width/2 + tam,
-					criaturaPosterior[numFrame].height/2 + tam);
-			break;
-		}
-	}
+
 
 	/*
 	 * Método que llamará el método de calcular de distancia y bajo la condición
@@ -125,6 +133,12 @@ public class Duende extends Criatura implements NEncontrable {
 			}
 		}
 
+	}
+
+	@Override
+	public void cargar(PApplet app) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	// FIN DE LA CLASE DUENDE
