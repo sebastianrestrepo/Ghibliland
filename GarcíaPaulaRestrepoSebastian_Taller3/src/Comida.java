@@ -6,6 +6,7 @@ public class Comida {
 	private PApplet app;
 	private int posX, posY, tam;
 	private int comida;
+	private Mundo m;
 	private PImage estrellaAmarilla, estrellaAzul, estrellaRoja, estrellaRosa, estrellaVioleta;
 
 	/*
@@ -14,19 +15,16 @@ public class Comida {
 	 *	@parametro int posY
 	 *  @parametro int tam
 	 */
-	public Comida(int posX, int posY, int tam){
+	public Comida(Mundo m, int posX, int posY, int tam){
 		this.posX = posX;
 		this.posY = posY;
 		this.tam = tam;
+		this.m = m;
+		estrellaAmarilla = m.getCargar().getEstrellaAmarilla();
+		estrellaAzul = m.getCargar().getEstrellaAzul();
+		estrellaVioleta= m.getCargar().getEstrellaVioleta();
+		estrellaRosa = m.getCargar().getEstrellaRosa();
 		comida = (int) (1+Math.random()*4);
-	}
-	
-	public void cargarComida(PApplet app){
-		this.app = app;
-		estrellaAmarilla = app.loadImage("../data/estrellas/estrellaAmarilla.png");
-		estrellaAzul = app.loadImage("../data/estrellas/estrellaAzul.png");
-		estrellaRosa = app.loadImage("../data/estrellas/estrellaRosa.png");
-		estrellaVioleta = app.loadImage("../data/estrellas/estrellaVioleta.png");
 	}
 	
 	/*

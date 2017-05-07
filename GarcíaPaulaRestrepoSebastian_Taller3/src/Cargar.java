@@ -12,7 +12,8 @@ public class Cargar {
 			criaturaDerMiniTotoro;
 	private PImage[] criaturaPosteriorDuende, criaturaPosteriorSinCara, criaturaPosteriorGato, criaturaPosteriorKodama,
 			criaturaPosteriorTotoro, criaturaPosteriorMiniTotoro;
-
+	private PImage estrellaAmarilla, estrellaAzul, estrellaRoja, estrellaRosa, estrellaVioleta;
+	
 	public Cargar(PApplet app) {
 		this.app = app;
 		cargarDuende();
@@ -21,8 +22,17 @@ public class Cargar {
 		cargarKodama();
 		cargarTotoro();
 		cargarMiniTotoro();
+		cargarComida();
 	}
 
+	// --------------------------COMIDA------------------------//
+	public void cargarComida(){
+		estrellaAmarilla = app.loadImage("../data/estrellas/estrellaAmarilla.png");
+		estrellaAzul = app.loadImage("../data/estrellas/estrellaAzul.png");
+		estrellaRosa = app.loadImage("../data/estrellas/estrellaRosa.png");
+		estrellaVioleta = app.loadImage("../data/estrellas/estrellaVioleta.png");
+	}
+	
 	// --------------------------EQUIPO NEGRO------------------------//
 	public void cargarDuende() {
 		// Frontal
@@ -361,5 +371,47 @@ public class Cargar {
 		this.criaturaPosteriorDuende = criaturaPosteriorDuende;
 	}
 
+	public PImage getEstrellaAmarilla() {
+		return estrellaAmarilla;
+	}
+
+	public void setEstrellaAmarilla(PImage estrellaAmarilla) {
+		this.estrellaAmarilla = estrellaAmarilla;
+	}
+
+	public PImage getEstrellaAzul() {
+		return estrellaAzul;
+	}
+
+	public void setEstrellaAzul(PImage estrellaAzul) {
+		this.estrellaAzul = estrellaAzul;
+	}
+
+	public PImage getEstrellaRoja() {
+		return estrellaRoja;
+	}
+
+	public void setEstrellaRoja(PImage estrellaRoja) {
+		this.estrellaRoja = estrellaRoja;
+	}
+
+	public PImage getEstrellaRosa() {
+		return estrellaRosa;
+	}
+
+	public void setEstrellaRosa(PImage estrellaRosa) {
+		this.estrellaRosa = estrellaRosa;
+	}
+
+	public PImage getEstrellaVioleta() {
+		return estrellaVioleta;
+	}
+
+	public void setEstrellaVioleta(PImage estrellaVioleta) {
+		this.estrellaVioleta = estrellaVioleta;
+	}
+	
+	
+    //----//
 	// FINAL DE LA CLASE CARGAR
 }

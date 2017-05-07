@@ -82,7 +82,7 @@ public class Mundo {
 	 */
 	public void anadirComidaInicial() {
 		for (int i = 0; i < 15; i++) {
-			comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30 + Math.random() * 560),
+			comida.add(new Comida(this, (int) (30 + Math.random() * 560), (int) (30 + Math.random() * 560),
 					(int) (15 + Math.random() * 25)));
 		}
 
@@ -169,8 +169,6 @@ public class Mundo {
 		cargarEnterUno();
 		cargarEnterDos();
 		cargarLuces();
-		//cargarCriaturas();
-		cargarComida();
 		cargarMitad();
 		cargarTitulo();
 		gatobus.cargarCriatura(app);
@@ -212,16 +210,6 @@ public class Mundo {
 		}
 	}
 
-	/*
-	 * Metodo que se encargara de cargar las imagenes de la comida
-	 * 
-	 * @retorno void
-	 */
-	public void cargarComida() {
-		for (int i = 0; i < comida.size(); i++) {
-			comida.get(i).cargarComida(app);
-		}
-	}
 
 	public void pintar() {
 		pantallas();
@@ -341,11 +329,11 @@ public class Mundo {
 
 	public void agregarComida() {
 		if (app.frameCount % 150 == 0) {
-			// for (int i = 0; i < 10; i++) {
-			// comida.add(new Comida((int) (30 + Math.random() * 560), (int) (30
-			// + Math.random() * 560),
-			// (int) (15 + Math.random() * 25)));
-			// }
+			for (int i = 0; i < 10; i++) {
+			comida.add(new Comida(this, (int) (30 + Math.random() * 560), (int) (30
+			+ Math.random() * 560),
+			(int) (15 + Math.random() * 25)));
+			}
 		}
 	}
 
