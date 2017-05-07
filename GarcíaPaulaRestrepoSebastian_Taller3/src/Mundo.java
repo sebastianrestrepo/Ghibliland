@@ -15,8 +15,7 @@ public class Mundo {
 	private PImage[] enterUno, enterDos, luces, mitad, titulo;
 	private int numActual, numLuces, numFrame, numTitulo;
 	private ArrayList<Criatura> criaturas;
-	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos
-										// de las criaturas
+	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos de las criaturas
 	private Thread capsulaGatoBus;
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
@@ -56,7 +55,8 @@ public class Mundo {
 
 	/*
 	 * Metodo que se encargara de iniciar todas las variables y listas
-	 * 
+	 * se llamará en el método teclas en el momento que se pase de las 
+	 * instrucciones al escenario
 	 * @retorno void
 	 */
 	public void agregarCriaturasInicio() {
@@ -75,7 +75,7 @@ public class Mundo {
 	}
 
 	/*
-	 * Metodo que se encargara de a�adir la comida que estar� incialmene en
+	 * Metodo que se encargara de añadir la comida que estará incialmene en
 	 * el lienzo
 	 * 
 	 * @retorno void
@@ -88,19 +88,24 @@ public class Mundo {
 
 	}
 
+	/*
+	 * Método que se encargará de añadir las criaturas del equipo negro
+	 * y que se llamará en método que se encarga de los eventos del teclado
+	 * y que a su vez es llamado en el keyReleased
+	 * 
+	 * @retorno void
+	 */
 	public void anadirEquipoNegro() {
-	//	equipoNegro = (int) (1 + Math.random() * 2);
 		equipoNegro = (int) (1 + Math.random() * 3);
-	//	System.out.println(equipoNegro);
 		switch (equipoNegro) {
 		case 1:
-			criaturas.add(new SinCara(this, app.width / 2 + 50, app.height / 3, 10));
+			criaturas.add(new SinCara(this, 121, 145, 10));
 			break;
 		case 2:
-			criaturas.add(new Duende(this, app.width / 2 - 50, app.height / 4, 30));
+			criaturas.add(new Duende(this, 124, 349, -20));
 			break;
 		case 3:
-			criaturas.add(new Gato(this, app.width / 2 - 50, app.height / 4, 25));
+			criaturas.add(new Gato(this, 129, 571, 25));
 			break;
 		}
 		
@@ -111,19 +116,24 @@ public class Mundo {
 			capsulas.add(temp);		
 	}
 	
+	/*
+	 * Método que se encargará de añadir las criaturas del equipo blanco
+	 * y que se llamará en método que se encarga de los eventos del teclado
+	 * y que a su vez es llamado en el keyReleased
+	 * 
+	 * @retorno void
+	 */
 	public void anadirEquipoBlanco() {
-	//	equipoNegro = (int) (1 + Math.random() * 2);
 		equipoBlanco = (int) (1 + Math.random() * 3);
-	//	System.out.println(equipoNegro);
 		switch (equipoBlanco) {
 		case 1:
-			criaturas.add(new Totoro(this, app.width / 2 + 50, app.height / 3, 10));
+			criaturas.add(new Totoro(this, 574, 91, 10));
 			break;
 		case 2:
-			criaturas.add(new MiniTotoro(this, app.width / 2 - 50, app.height / 4, 10));
+			criaturas.add(new MiniTotoro(this, 572, 347, 10));
 			break;
 		case 3:
-			criaturas.add(new Kodama(this, app.width / 2 - 50, app.height / 4, 15));
+			criaturas.add(new Kodama(this, 585, 592, 15));
 			break;
 		}
 		
@@ -135,7 +145,7 @@ public class Mundo {
 	}
 
 	/*
-	 * M�todo que se encargar� de iniciar y encapsular los Hilos
+	 * Método que se encargará de iniciar y encapsular los Hilos
 	 * 
 	 * @retorno void
 	 */
@@ -162,11 +172,11 @@ public class Mundo {
 		//cargarCriaturas();
 		cargarComida();
 		cargarMitad();
-		caragarTitulo();
+		cargarTitulo();
 		gatobus.cargarCriatura(app);
 	}
 
-	public void caragarTitulo() {
+	public void cargarTitulo() {
 		numTitulo = 1;
 		titulo = new PImage[9];
 		for (int i = 1; i < titulo.length; i++) {
@@ -218,7 +228,7 @@ public class Mundo {
 	}
 
 	/*
-	 * M�todo que se contendr� un switch que definir� los cambios
+	 * Método que se contendrá un switch que definirá los cambios
 	 * pantallas
 	 * 
 	 * @retorno void
@@ -370,15 +380,15 @@ public class Mundo {
 			}
 			break;
 		case 2:
-			// A�adir equipo negro
+			// Anadir equipo negro
 			if (app.key == 'N' || app.key == 'n') {
 				anadirEquipoNegro();
 			}
-			// A�adir equipo blanco
+			// Anadir equipo blanco
 			if (app.key == 'B' || app.key == 'b') {
 				anadirEquipoBlanco();
 			}
-
+            //Reiniciar la aplicación
 			if (app.key == 'R' || app.key == 'r') {
 				Thread gb = new Thread(gatobus);
 				gb.start();
@@ -428,13 +438,9 @@ public class Mundo {
 		return resetP;
 	}
 
-
-
 	public Cargar getCargar() {
 		return cargar;
 	}
-
-
 
 	public void setCargar(Cargar cargar) {
 		this.cargar = cargar;
@@ -442,5 +448,5 @@ public class Mundo {
 	
 	
 	
-	//FINAL DE LA CLASE MUNDO
+	//---------------------------FINAL DE LA CLASE MUNDO---------------------------//
 }

@@ -26,34 +26,6 @@ public class Duende extends Criatura implements NEncontrable {
 		criaturaPosterior = m.getCargar().getCriaturaPosteriorDuende();
 	}
 
-	/*public void cargar(PApplet app) {
-		this.app = app;
-		// Frontal
-		criaturaFrontal = new PImage[11];
-		for (int i = 0; i < criaturaFrontal.length; i++) {
-			criaturaFrontal[i] = app.loadImage("../data/personajes/duende/duendeFrontal/Duende_" + i + ".png");
-		}
-		// Izquierda
-		criaturaIzq = new PImage[11];
-		for (int i = 0; i < criaturaIzq.length; i++) {
-			criaturaIzq[i] = app.loadImage("../data/personajes/duende/duendeIzq/Duende izq_" + i + ".png");
-		}
-		// Derecha
-		criaturaDer = new PImage[11];
-		for (int i = 0; i < criaturaDer.length; i++) {
-			criaturaDer[i] = app.loadImage("../data/personajes/duende/duendeDer/Duende der_" + i + ".png");
-		}
-		// Posterior
-		criaturaPosterior = new PImage[11];
-		for (int i = 0; i < criaturaPosterior.length; i++) {
-			criaturaPosterior[i] = app
-					.loadImage("../data/personajes/duende/duendePosterior/Duende posterior_" + i + ".png");
-		}
-		
-		System.out.println("CARGA: " + criaturaFrontal);
-		app.println(criaturaFrontal);
-		System.out.println("-----");
-	}*/
 	/*
 	 * Método que se encargará de pintar las secuencias de imagenes de los
 	 * personajes
