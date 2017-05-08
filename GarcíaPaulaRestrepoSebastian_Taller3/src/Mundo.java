@@ -15,11 +15,12 @@ public class Mundo {
 	private PImage[] enterUno, enterDos, luces, mitad, titulo;
 	private int numActual, numLuces, numFrame, numTitulo;
 	private ArrayList<Criatura> criaturas;
-	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos de las criaturas
+	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos
+										// de las criaturas
 	private Thread capsulaGatoBus;
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
-	private boolean reset, resetP;
+	private boolean reset, resetP, animarMitad;
 
 	/*
 	 * Constructor de Mundo
@@ -31,11 +32,9 @@ public class Mundo {
 		app.imageMode(app.CENTER);
 		inicializarVariables();
 		anadirComidaInicial();
-	//	agregarCriaturasInicio();
+		// agregarCriaturasInicio();
 		cargarImagenes();
 	}
-	
-	
 
 	/*
 	 * Metodo que se encargara de iniciar todas las variables y listas
@@ -50,13 +49,14 @@ public class Mundo {
 		cargar = new Cargar(app);
 		reset = false;
 		resetP = false;
-
+		animarMitad = false;
 	}
 
 	/*
-	 * Metodo que se encargara de iniciar todas las variables y listas
-	 * se llamará en el método teclas en el momento que se pase de las 
+	 * Metodo que se encargara de iniciar todas las variables y listas se
+	 * llamará en el método teclas en el momento que se pase de las
 	 * instrucciones al escenario
+	 * 
 	 * @retorno void
 	 */
 	public void agregarCriaturasInicio() {
@@ -68,15 +68,15 @@ public class Mundo {
 		criaturas.add(new Kodama(this, 585, 592, 15));
 		for (int i = 0; i < criaturas.size(); i++) {
 			capsulas.add(new Thread(criaturas.get(i)));
-				if (criaturas.get(i) !=null) {
-					capsulas.get(i).start();
+			if (criaturas.get(i) != null) {
+				capsulas.get(i).start();
 			}
 		}
 	}
 
 	/*
-	 * Metodo que se encargara de añadir la comida que estará incialmene en
-	 * el lienzo
+	 * Metodo que se encargara de añadir la comida que estará incialmene en el
+	 * lienzo
 	 * 
 	 * @retorno void
 	 */
@@ -89,9 +89,9 @@ public class Mundo {
 	}
 
 	/*
-	 * Método que se encargará de añadir las criaturas del equipo negro
-	 * y que se llamará en método que se encarga de los eventos del teclado
-	 * y que a su vez es llamado en el keyReleased
+	 * Método que se encargará de añadir las criaturas del equipo negro y que se
+	 * llamará en método que se encarga de los eventos del teclado y que a su
+	 * vez es llamado en el keyReleased
 	 * 
 	 * @retorno void
 	 */
@@ -108,18 +108,18 @@ public class Mundo {
 			criaturas.add(new Gato(this, 129, 571, 25));
 			break;
 		}
-		
-			Thread temp = new Thread(criaturas.get(criaturas.size()-1));
-			if (temp.getState() == Thread.State.NEW) {
-				temp.start();
-			}
-			capsulas.add(temp);		
+
+		Thread temp = new Thread(criaturas.get(criaturas.size() - 1));
+		if (temp.getState() == Thread.State.NEW) {
+			temp.start();
+		}
+		capsulas.add(temp);
 	}
-	
+
 	/*
-	 * Método que se encargará de añadir las criaturas del equipo blanco
-	 * y que se llamará en método que se encarga de los eventos del teclado
-	 * y que a su vez es llamado en el keyReleased
+	 * Método que se encargará de añadir las criaturas del equipo blanco y que
+	 * se llamará en método que se encarga de los eventos del teclado y que a su
+	 * vez es llamado en el keyReleased
 	 * 
 	 * @retorno void
 	 */
@@ -136,12 +136,12 @@ public class Mundo {
 			criaturas.add(new Kodama(this, 585, 592, 15));
 			break;
 		}
-		
-			Thread temp = new Thread(criaturas.get(criaturas.size()-1));
-			if (temp.getState() == Thread.State.NEW) {
-				temp.start();
-			}
-			capsulas.add(temp);		
+
+		Thread temp = new Thread(criaturas.get(criaturas.size() - 1));
+		if (temp.getState() == Thread.State.NEW) {
+			temp.start();
+		}
+		capsulas.add(temp);
 	}
 
 	/*
@@ -183,7 +183,7 @@ public class Mundo {
 	}
 
 	public void cargarMitad() {
-		mitad = new PImage[14];
+		mitad = new PImage[23];
 		for (int i = 0; i < mitad.length; i++) {
 			mitad[i] = app.loadImage("../data/mitad/mitad_" + i + ".png");
 		}
@@ -210,14 +210,12 @@ public class Mundo {
 		}
 	}
 
-
 	public void pintar() {
 		pantallas();
 	}
 
 	/*
-	 * Método que se contendrá un switch que definirá los cambios
-	 * pantallas
+	 * Método que se contendrá un switch que definirá los cambios pantallas
 	 * 
 	 * @retorno void
 	 */
@@ -240,10 +238,11 @@ public class Mundo {
 			pintarComida();
 			cambioEstado();
 			pintarCriaturas();
-			pintarMitad();
 			agregarComida();
+			mitad();
 			pintarGato();
 			pintarLuces();
+			System.out.println(numFrame);
 			break;
 		}
 	}
@@ -310,7 +309,6 @@ public class Mundo {
 	public void darDeComer() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).comer(comida);
-
 		}
 	}
 
@@ -321,8 +319,8 @@ public class Mundo {
 	}
 
 	/*
-	 * M�todo que se encargar� de llamar a todos los pintar que vienen de
-	 * las otras clases y que ser� llamado en el Ejectuable en el draw
+	 * M�todo que se encargar� de llamar a todos los pintar que vienen de las
+	 * otras clases y que ser� llamado en el Ejectuable en el draw
 	 * 
 	 * @retorno void
 	 */
@@ -330,15 +328,42 @@ public class Mundo {
 	public void agregarComida() {
 		if (app.frameCount % 150 == 0) {
 			for (int i = 0; i < 10; i++) {
-			comida.add(new Comida(this, (int) (30 + Math.random() * 560), (int) (30
-			+ Math.random() * 560),
-			(int) (15 + Math.random() * 25)));
+				comida.add(new Comida(this, (int) (30 + Math.random() * 560), (int) (30 + Math.random() * 560),
+						(int) (15 + Math.random() * 25)));
+				animarMitad = true;
 			}
 		}
 	}
-
+	
+	/*
+	 * Método que se encarga de los eventos que sucedan con el elemento de la mitad
+	 * es decir, cuando debe pintarla y cuando animarla bajo una condición
+	 */
+	public void mitad(){
+		if(animarMitad){
+			animarMitad();
+		}else{
+			pintarMitad();
+		}
+	}
+	
+	/*
+	 * Método que se encarga de pintar la mitad
+	 */
 	public void pintarMitad() {
+		app.image(mitad[0], app.width / 2, app.height / 2);
+	}
+
+	/*
+	 * Método que se encarga de animar la mitad
+	 */
+	public void animarMitad() {
+		numFrame++;
 		app.image(mitad[numFrame], app.width / 2, app.height / 2);
+		if (numFrame >= 22) {
+			numFrame = 0;
+			animarMitad = false;
+		}
 	}
 
 	public void pintarGato() {
@@ -353,7 +378,7 @@ public class Mundo {
 	 * 
 	 * @retorno void
 	 */
-	public void teclas()  {
+	public void teclas() {
 		switch (pantallas) {
 		case 0:
 			if (app.keyCode == app.ENTER) {
@@ -363,7 +388,7 @@ public class Mundo {
 		case 1:
 			if (app.keyCode == app.ENTER) {
 				agregarCriaturasInicio();
-		//		iniciarHilos();
+				// iniciarHilos();
 				pantallas = 2;
 			}
 			break;
@@ -376,7 +401,7 @@ public class Mundo {
 			if (app.key == 'B' || app.key == 'b') {
 				anadirEquipoBlanco();
 			}
-            //Reiniciar la aplicación
+			// Reiniciar la aplicación
 			if (app.key == 'R' || app.key == 'r') {
 				Thread gb = new Thread(gatobus);
 				gb.start();
@@ -386,14 +411,14 @@ public class Mundo {
 				System.out.println("gatoX" + gatobus.getX());
 				iniciarHiloGato();
 
-			}                                              
+			}
 			break;
 		}
 	}
 
-	public void iniciarHiloGato()  {
+	public void iniciarHiloGato() {
 		if (reset) {
-			
+
 		}
 
 	}
@@ -418,11 +443,12 @@ public class Mundo {
 	public void setReset(boolean reset) {
 		this.reset = reset;
 	}
+
 	public void setResetP(boolean resetP) {
 		this.resetP = resetP;
 	}
-	
-	public boolean getResetP(){
+
+	public boolean getResetP() {
 		return resetP;
 	}
 
@@ -433,8 +459,7 @@ public class Mundo {
 	public void setCargar(Cargar cargar) {
 		this.cargar = cargar;
 	}
-	
-	
-	
-	//---------------------------FINAL DE LA CLASE MUNDO---------------------------//
+
+	// ---------------------------FINAL DE LA CLASE
+	// MUNDO---------------------------//
 }

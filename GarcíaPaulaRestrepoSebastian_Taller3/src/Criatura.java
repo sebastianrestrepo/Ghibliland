@@ -34,7 +34,7 @@ public abstract class Criatura implements Runnable {
 		this.tam = tam;
 		vivo = true;
 		huyendo = false;
-		estado=0;
+		estado = 0;
 		ritmo = 66;
 	}
 
@@ -157,27 +157,27 @@ public abstract class Criatura implements Runnable {
 	 */
 	public void devuelvis() {
 		// abajo
-	try{
-		if (estado == 0 && posY >= app.height - 90) {
-			estado = 3;
+		try {
+			if (estado == 0 && posY >= app.height - 90) {
+				estado = 3;
+			}
+			// derecha
+			if (estado == 1 && posX >= app.width - 90) {
+				estado = 2;
+			}
+			// izquierda
+			if (estado == 2 && posX <= 90) {
+				estado = 1;
+			}
+			// arriba
+			if (estado == 3 && posY <= 90) {
+				estado = 0;
+			}
+		} catch (Exception e) {
+			// TODO: no hacer esto....
 		}
-		// derecha
-		if (estado == 1 && posX >= app.width - 90) {
-			estado = 2;
-		}
-		// izquierda
-		if (estado == 2 && posX <= 90) {
-			estado = 1;
-		}
-		// arriba
-		if (estado == 3 && posY <= 90) {
-			estado = 0;
-		}
-	}catch (Exception e) {
-		// TODO: no hacer esto....
 	}
-	}
-	
+
 	public void devuelvisMitad() {
 		// abajo
 		if (estado == 0 && posX >= 300 && posX <= 412 && posY >= 322 && posY <= 412) {
@@ -214,8 +214,10 @@ public abstract class Criatura implements Runnable {
 			if (PApplet.dist(posX, posY, c.get(i).getPosX(), c.get(i).getPosY()) < 50) {
 				System.out.println("comioooooooo");
 				fuerza += 1;
-				tam +=7;
 				c.remove(i);
+				if (tam <= 56) {
+					tam += 7;
+				}
 			}
 		}
 	}

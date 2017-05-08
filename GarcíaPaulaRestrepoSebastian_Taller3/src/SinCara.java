@@ -32,8 +32,8 @@ public class SinCara extends Criatura implements NEncontrable {
 	}
 
 	/*
-	 * Método que se encargará de hacer los cálculos para pintar las
-	 * secuencias de los personajes
+	 * Método que se encargará de hacer los cálculos para pintar las secuencias
+	 * de los personajes
 	 * 
 	 * @retorno void
 	 */
@@ -75,16 +75,17 @@ public class SinCara extends Criatura implements NEncontrable {
 	 * @retorno void
 	 */
 	public void pintar(PApplet app) {
-	
+		//System.out.println("Tamaño SinCara" + tam);
 		this.app = app;
 		switch (estado) {
 		case 0:
-			/*System.out.println("LETERRITO: " + criaturaFrontal);
-			app.println(criaturaFrontal);
-			System.out.println("-----");*/
+			/*
+			 * System.out.println("LETERRITO: " + criaturaFrontal);
+			 * app.println(criaturaFrontal); System.out.println("-----");
+			 */
 			app.image(criaturaFrontal[numFrame], posX, posY, criaturaFrontal[numFrame].width / 2 + tam,
 					criaturaFrontal[numFrame].height / 2 + tam);
-			
+
 			break;
 		case 1:
 			app.image(criaturaDer[numFrame], posX, posY, criaturaDer[numFrame].width / 2 + tam,
@@ -102,8 +103,8 @@ public class SinCara extends Criatura implements NEncontrable {
 	}
 
 	/*
-	 * Método que llamará el método de calcular de distancia y bajo la
-	 * condición de que este retorne true llamará al método huir
+	 * Método que llamará el método de calcular de distancia y bajo la condición
+	 * de que este retorne true llamará al método huir
 	 * 
 	 * @retorno void
 	 */
