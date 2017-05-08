@@ -31,14 +31,14 @@ public class MainAppTaller3 extends PApplet {
 	
 	public void inicializarCancion(){
 		minim = new Minim(this);
-		totosong =  minim.loadFile("../data/Song.mp3",256);
+		totosong =  minim.loadFile("../data/Song.mp3");
 		totosong.loop();
-		
+
 	}
 
 	@Override
 	public void draw() {
-	//	totosong.play();
+		totosong.play();
 		m.pintar();
 	}
 

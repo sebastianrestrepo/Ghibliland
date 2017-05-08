@@ -81,17 +81,26 @@ public class Mundo {
 	 * @retorno void
 	 */
 	public void anadirComidaInicial() {
+
+		// for (int j = 1; j < comida.size(); j++) {
+
+		// if (PApplet.dist(comida.get(j).getPosX(), comida.get(j).getPosY(),
+		// comida.get(j - 1).getPosX(),
+		// comida.get(j - 1).getPosY()) < 25) {
+
 		for (int i = 0; i < 15; i++) {
+
 			comida.add(new Comida(this, (int) (30 + Math.random() * 560), (int) (30 + Math.random() * 560),
 					(int) (15 + Math.random() * 25)));
+
 		}
 
 	}
 
 	/*
-	 * Método que se encargará de añadir las criaturas del equipo negro y que se
-	 * llamará en método que se encarga de los eventos del teclado y que a su
-	 * vez es llamado en el keyReleased
+	 * Método que se encargará de añadir las criaturas del equipo negro y que
+	 * se llamará en método que se encarga de los eventos del teclado y que a
+	 * su vez es llamado en el keyReleased
 	 * 
 	 * @retorno void
 	 */
@@ -117,9 +126,9 @@ public class Mundo {
 	}
 
 	/*
-	 * Método que se encargará de añadir las criaturas del equipo blanco y que
-	 * se llamará en método que se encarga de los eventos del teclado y que a su
-	 * vez es llamado en el keyReleased
+	 * Método que se encargará de añadir las criaturas del equipo blanco y
+	 * que se llamará en método que se encarga de los eventos del teclado y
+	 * que a su vez es llamado en el keyReleased
 	 * 
 	 * @retorno void
 	 */
@@ -319,34 +328,37 @@ public class Mundo {
 	}
 
 	/*
-	 * M�todo que se encargar� de llamar a todos los pintar que vienen de las
-	 * otras clases y que ser� llamado en el Ejectuable en el draw
+	 * M�todo que se encargar� de llamar a todos los pintar que vienen de
+	 * las otras clases y que ser� llamado en el Ejectuable en el draw
 	 * 
 	 * @retorno void
 	 */
 
 	public void agregarComida() {
-		if (app.frameCount % 150 == 0) {
+		if (app.frameCount % 500 == 0) {
+
 			for (int i = 0; i < 10; i++) {
+
 				comida.add(new Comida(this, (int) (30 + Math.random() * 560), (int) (30 + Math.random() * 560),
 						(int) (15 + Math.random() * 25)));
 				animarMitad = true;
 			}
 		}
 	}
-	
+
 	/*
-	 * Método que se encarga de los eventos que sucedan con el elemento de la mitad
-	 * es decir, cuando debe pintarla y cuando animarla bajo una condición
+	 * Método que se encarga de los eventos que sucedan con el elemento de la
+	 * mitad es decir, cuando debe pintarla y cuando animarla bajo una
+	 * condición
 	 */
-	public void mitad(){
-		if(animarMitad){
+	public void mitad() {
+		if (animarMitad) {
 			animarMitad();
-		}else{
+		} else {
 			pintarMitad();
 		}
 	}
-	
+
 	/*
 	 * Método que se encarga de pintar la mitad
 	 */
