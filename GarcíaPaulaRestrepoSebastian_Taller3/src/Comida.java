@@ -51,6 +51,7 @@ public class Comida {
 		}
 	}
 	
+	//GETTERS Y SETTERS
 	public int getPosX() {
 		return posX;
 	}
@@ -59,4 +60,5 @@ public class Comida {
 		return posY;
 	}
 	
+	//----------FINAL DE LA CLASE COMIDA-----------//
 }

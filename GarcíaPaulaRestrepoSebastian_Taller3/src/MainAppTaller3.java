@@ -38,16 +38,12 @@ public class MainAppTaller3 extends PApplet {
 
 	@Override
 	public void draw() {
-		totosong.play();
 		m.pintar();
 	}
 
 	@Override
 	public void keyReleased() {
 		m.teclas();
-		if (mouseX >= 300 && mouseX <= 412 && mouseY >= 322 && mouseY <= 412) {
-			System.out.println("true");
-		}
 	}
 	
 	public void mouseReleased(){

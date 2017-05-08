@@ -15,12 +15,12 @@ public class Mundo {
 	private PImage[] enterUno, enterDos, luces, mitad, titulo;
 	private int numActual, numLuces, numFrame, numTitulo;
 	private ArrayList<Criatura> criaturas;
-	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos
-										// de las criaturas
+	private ArrayList<Thread> capsulas; // ArrayList para encapsular los hilos de las criaturas
+										
 	private Thread capsulaGatoBus;
 	private ArrayList<Comida> comida;
 	private GatoBus gatobus;
-	private boolean reset, resetP, animarMitad;
+	private boolean animarMitad;
 
 	/*
 	 * Constructor de Mundo
@@ -44,11 +44,10 @@ public class Mundo {
 	public void inicializarVariables() {
 		criaturas = new ArrayList<Criatura>();
 		comida = new ArrayList<Comida>();
-		gatobus = new GatoBus(-149, 100, 50, this, reset);
+		gatobus = new GatoBus(-149, 100, 50, this);
 		capsulas = new ArrayList<Thread>();
+		capsulaGatoBus = new Thread(gatobus);
 		cargar = new Cargar(app);
-		reset = false;
-		resetP = false;
 		animarMitad = false;
 	}
 
@@ -98,9 +97,9 @@ public class Mundo {
 	}
 
 	/*
-	 * Método que se encargará de añadir las criaturas del equipo negro y que
-	 * se llamará en método que se encarga de los eventos del teclado y que a
-	 * su vez es llamado en el keyReleased
+	 * Método que se encargará de añadir las criaturas del equipo negro y que se
+	 * llamará en método que se encarga de los eventos del teclado y que a su
+	 * vez es llamado en el keyReleased
 	 * 
 	 * @retorno void
 	 */
@@ -126,9 +125,9 @@ public class Mundo {
 	}
 
 	/*
-	 * Método que se encargará de añadir las criaturas del equipo blanco y
-	 * que se llamará en método que se encarga de los eventos del teclado y
-	 * que a su vez es llamado en el keyReleased
+	 * Método que se encargará de añadir las criaturas del equipo blanco y que
+	 * se llamará en método que se encarga de los eventos del teclado y que a su
+	 * vez es llamado en el keyReleased
 	 * 
 	 * @retorno void
 	 */
@@ -183,6 +182,7 @@ public class Mundo {
 		gatobus.cargarCriatura(app);
 	}
 
+	//Cargar titulo de Ghibliland
 	public void cargarTitulo() {
 		numTitulo = 1;
 		titulo = new PImage[9];
@@ -191,6 +191,7 @@ public class Mundo {
 		}
 	}
 
+	//Cargar animación de la mitad del lienzo
 	public void cargarMitad() {
 		mitad = new PImage[23];
 		for (int i = 0; i < mitad.length; i++) {
@@ -198,6 +199,7 @@ public class Mundo {
 		}
 	}
 
+	//Cargar animación del enter
 	public void cargarEnterUno() {
 		enterUno = new PImage[23];
 		for (int i = 0; i < enterUno.length; i++) {
@@ -205,6 +207,7 @@ public class Mundo {
 		}
 	}
 
+	//Cargar animación del enter
 	public void cargarEnterDos() {
 		enterDos = new PImage[23];
 		for (int i = 0; i < enterUno.length; i++) {
@@ -212,6 +215,7 @@ public class Mundo {
 		}
 	}
 
+	//Cargar animación de las luces
 	public void cargarLuces() {
 		luces = new PImage[15];
 		for (int i = 0; i < luces.length; i++) {
@@ -219,6 +223,7 @@ public class Mundo {
 		}
 	}
 
+	//Pintar que a su vez es llamado en el draw
 	public void pintar() {
 		pantallas();
 	}
@@ -251,7 +256,6 @@ public class Mundo {
 			mitad();
 			pintarGato();
 			pintarLuces();
-			System.out.println(numFrame);
 			break;
 		}
 	}
@@ -268,7 +272,6 @@ public class Mundo {
 
 	/*
 	 * Metodo que se encargara de pintar la comida
-	 * 
 	 * @retorno void
 	 */
 	public void pintarComida() {
@@ -277,6 +280,10 @@ public class Mundo {
 		}
 	}
 
+	/*
+	 * Metodo que se encargara de pintar el arreglo de luces
+	 * @retorno void
+	 */
 	public void pintarLuces() {
 		app.image(luces[numLuces], app.width / 2, app.height / 2);
 		if (app.frameCount % 5 == 0) {
@@ -287,6 +294,10 @@ public class Mundo {
 		}
 	}
 
+	/*
+	 * Metodo que se encargara de enter
+	 * @retorno void
+	 */
 	public void pintarEnterUno() {
 		app.image(enterUno[numActual], 345, 484);
 		if (app.frameCount % 5 == 0) {
@@ -307,6 +318,10 @@ public class Mundo {
 		}
 	}
 
+	/*
+	 * Metodo que se encargara de pintar las criaturas
+	 * @retorno void
+	 */
 	public void pintarCriaturas() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).pintar(app);
@@ -314,13 +329,18 @@ public class Mundo {
 		darDeComer();
 	}
 
-	// M�todo para pasarle el ArrayList de comida a las criaturas
+	// Método para pasarle el ArrayList de comida a las criaturas
 	public void darDeComer() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).comer(comida);
 		}
 	}
 
+	/*
+	 * Metodo que se encargará realizar el cambio de la variable 
+	 * 'estado' que se encuentra dentro del ArrayList de Criaturas
+	 * @retorno void
+	 */
 	public void cambioEstado() {
 		for (int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).cambioEstado(app);
@@ -328,12 +348,11 @@ public class Mundo {
 	}
 
 	/*
-	 * M�todo que se encargar� de llamar a todos los pintar que vienen de
-	 * las otras clases y que ser� llamado en el Ejectuable en el draw
+	 * Método que se encargará de llamar a todos los pintar que vienen de las
+	 * otras clases y que será llamado en el Ejectuable en el draw
 	 * 
 	 * @retorno void
 	 */
-
 	public void agregarComida() {
 		if (app.frameCount % 500 == 0) {
 
@@ -348,8 +367,7 @@ public class Mundo {
 
 	/*
 	 * Método que se encarga de los eventos que sucedan con el elemento de la
-	 * mitad es decir, cuando debe pintarla y cuando animarla bajo una
-	 * condición
+	 * mitad es decir, cuando debe pintarla y cuando animarla bajo una condición
 	 */
 	public void mitad() {
 		if (animarMitad) {
@@ -378,15 +396,19 @@ public class Mundo {
 		}
 	}
 
+	/*
+	 * Método que se encargará de pintar el GatoBus
+	 * mientras el usuario lo haya llamado
+	 */
 	public void pintarGato() {
-		if (resetP) {
+		if (!gatobus.isPausa()) {
 			gatobus.pintar(app);
 		}
 	}
 
 	/*
-	 * M�todo que se encargar� de los eventos del teclado otras clases y que
-	 * ser� llamado en el Ejectuable en el keyReleased
+	 * Método que se encargará de los eventos del teclado otras clases y que
+	 * será llamado en el Ejectuable en el keyReleased
 	 * 
 	 * @retorno void
 	 */
@@ -415,24 +437,18 @@ public class Mundo {
 			}
 			// Reiniciar la aplicación
 			if (app.key == 'R' || app.key == 'r') {
-				Thread gb = new Thread(gatobus);
-				gb.start();
-				reset = true;
-				resetP = true;
-				System.out.println("boolean" + reset);
-				System.out.println("gatoX" + gatobus.getX());
-				iniciarHiloGato();
-
+				iniciarHiloGatoBus();
+				gatobus.setPausa(false);
 			}
 			break;
 		}
 	}
 
-	public void iniciarHiloGato() {
-		if (reset) {
-
+	//Iniciar hilo del gato bus mientras sea nuevo
+	public void iniciarHiloGatoBus() {
+		if (capsulaGatoBus.getState() == Thread.State.NEW) {
+			capsulaGatoBus.start();
 		}
-
 	}
 
 	// GETTERS Y SETTERS
@@ -452,17 +468,6 @@ public class Mundo {
 		this.comida = comida;
 	}
 
-	public void setReset(boolean reset) {
-		this.reset = reset;
-	}
-
-	public void setResetP(boolean resetP) {
-		this.resetP = resetP;
-	}
-
-	public boolean getResetP() {
-		return resetP;
-	}
 
 	public Cargar getCargar() {
 		return cargar;

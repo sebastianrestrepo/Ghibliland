@@ -10,8 +10,8 @@ public class GatoBus implements Runnable {
 	private Mundo m;
 	private ArrayList<Comida> comida;
 	private ArrayList<Criatura> c;
-	private boolean reset;
 	private boolean vivo;
+	private boolean pausa;
 	private int mover, dir;
 	private float x, y;
 
@@ -24,13 +24,29 @@ public class GatoBus implements Runnable {
 	 * 
 	 * @parametro int tam
 	 */
-	public GatoBus(float posX, float posY, int tam, Mundo m, boolean reset) {
+	public GatoBus(float posX, float posY, int tam, Mundo m) {
 		this.x = posX;
 		this.y = posY;
 		this.m = m;
-		this.reset = reset;
+		pausa = true;
 		vivo = true;
 		mover = 1;
+	}
+
+	@Override
+	public void run() {
+		while (vivo) {
+			try {
+				if (!pausa) {
+					mover();
+					reset();
+				}
+				Thread.sleep(33);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 	public void cargarCriatura(PApplet app) {
@@ -69,7 +85,8 @@ public class GatoBus implements Runnable {
 			break;
 
 		case 2:
-			app.image(criaturaIz[numFrame], x, y, criaturaIz[numFrame].width / 3 + 15, criaturaIz[numFrame].height / 3 + 15);
+			app.image(criaturaIz[numFrame], x, y, criaturaIz[numFrame].width / 3 + 15,
+					criaturaIz[numFrame].height / 3 + 15);
 			if (app.frameCount % 2 == 0) {
 				numFrame++;
 				if (numFrame >= criaturaIz.length) {
@@ -79,22 +96,6 @@ public class GatoBus implements Runnable {
 			break;
 		}
 
-	}
-
-	@Override
-	public void run() {
-		while (vivo) {
-			try {
-				mover();
-				reset();
-				// System.out.println("reseteandooooo");
-				Thread.sleep(33);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
 	}
 
 	public void mover() {
@@ -120,13 +121,14 @@ public class GatoBus implements Runnable {
 
 	public void reset() {
 
+		//Eliminar criaturas y comida del GatoBus a su paso
 		ArrayList<Criatura> refC = m.getCriaturas();
 		for (int i = 0; i < refC.size(); i++) {
 			Criatura ref = refC.get(i);
 			if (PApplet.dist(x, y, ref.getPosX(), ref.getPosY()) < 80) {
 				refC.remove(ref);
 			}
-	
+
 		}
 
 		ArrayList<Comida> refCo = m.getComida();
@@ -135,28 +137,20 @@ public class GatoBus implements Runnable {
 			if (PApplet.dist(x, y, ref.getPosX(), ref.getPosY()) < 80) {
 				refCo.remove(ref);
 			}
-			
+
 		}
-		
+
+		//Eliminar todos los elementos del lienzo cuando el GatoBus sale
+		//del mismo, de igual manera se reinician sus variables
 		if (y > 760) {
 			refCo.clear();
 			refC.clear();
-
-			x=249;
-			y=100;
-		m.setResetP(false);
-	/*	try {
-			wait();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+			x = -149;
+			y = 100;
+			pausa = true;
 		}
 	}
 
-	public void clear() {
-
-	}
 
 	// GETTERS Y SETTERS
 	public float getX() {
@@ -166,4 +160,14 @@ public class GatoBus implements Runnable {
 	public float getY() {
 		return y;
 	}
+
+	public boolean isPausa() {
+		return pausa;
+	}
+
+	public void setPausa(boolean pausa) {
+		this.pausa = pausa;
+	}
+
+	// ----------FINAL DE LA CLASE GATO BUS-----------//
 }

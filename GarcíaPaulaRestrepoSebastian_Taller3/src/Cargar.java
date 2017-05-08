@@ -3,6 +3,11 @@ import processing.core.PImage;
 
 public class Cargar {
 
+	/*
+	 * Clase encargada de cargar las imagenes de las Criaturas y la Comida 
+	 * pasandose como referencia por medio del Mundo a las Criaturas y de Getters
+	 */
+	
 	private PApplet app;
 	private PImage[] criaturaFrontalDuende, criaturaFrontalSinCara, criaturaFrontalGato, criaturaFrontalKodama,
 			criaturaFrontalTotoro, criaturaFrontalMiniTotoro;

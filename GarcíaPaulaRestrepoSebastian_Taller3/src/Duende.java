@@ -87,7 +87,8 @@ public class Duende extends Criatura implements NEncontrable {
 
 	/*
 	 * Método que llamará el método de calcular de distancia y bajo la condición
-	 * de que este retorne true llamará al método huir
+	 * de que este retorne true llamará al método huir siempre y cuando la criatura implemente
+	 * la interfaz bandera que identifica al equipo contrario
 	 * 
 	 * @retorno void
 	 */
@@ -96,7 +97,7 @@ public class Duende extends Criatura implements NEncontrable {
 		for (int i = 0; i < refCriaturas.size(); i++) {
 			if (refCriaturas.get(i) instanceof BEncontrable) {
 				if (calcularDistancia(refCriaturas.get(i))) {
-					if (fuerza < refCriaturas.get(i).fuerza) {
+					if (fuerza <= refCriaturas.get(i).fuerza) {
 						huir();
 					}
 					System.out.println("Fuerza Duende: " + fuerza + " Fuerza Blanco: " + refCriaturas.get(i).fuerza);
@@ -107,11 +108,6 @@ public class Duende extends Criatura implements NEncontrable {
 
 	}
 
-	@Override
-	public void cargar(PApplet app) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	// FIN DE LA CLASE DUENDE
 }

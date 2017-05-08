@@ -27,11 +27,6 @@ public class Kodama extends Criatura implements BEncontrable {
 		criaturaPosterior = m.getCargar().getCriaturaPosteriorKodama();
 	}
 
-	public void cargar(PApplet app) {
-		this.app = app;
-
-	}
-
 	@Override
 	public void calculo() {
 		switch (estado) {
@@ -75,7 +70,7 @@ public class Kodama extends Criatura implements BEncontrable {
 	 * @retorno void
 	 */
 	public void pintar(PApplet app) {
-		System.out.println("Tam Kodama :" + tam);
+		//System.out.println("Tam Kodama :" + tam);
 		this.app = app;
 		switch (estado) {
 		case 0:
@@ -102,7 +97,8 @@ public class Kodama extends Criatura implements BEncontrable {
 
 	/*
 	 * Método que llamará el método de calcular de distancia y bajo la condición
-	 * de que este retorne true llamará al método huir
+	 * de que este retorne true llamará al método huir siempre y cuando la criatura implemente
+	 * la interfaz bandera que identifica al equipo contrario
 	 * 
 	 * @retorno void
 	 */
@@ -111,7 +107,7 @@ public class Kodama extends Criatura implements BEncontrable {
 		for (int i = 0; i < refCriaturas.size(); i++) {
 			if (refCriaturas.get(i) instanceof NEncontrable) {
 				if (calcularDistancia(refCriaturas.get(i))) {
-					if (fuerza < refCriaturas.get(i).fuerza) {
+					if (fuerza <= refCriaturas.get(i).fuerza) {
 						huir();
 					}
 					System.out.println("Fuerza Kodama: " + fuerza + " Fuerza Negro: " + refCriaturas.get(i).fuerza);

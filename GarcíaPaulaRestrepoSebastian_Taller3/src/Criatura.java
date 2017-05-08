@@ -59,13 +59,6 @@ public abstract class Criatura implements Runnable {
 		}
 	}
 
-	/*
-	 * Método que se encargará de cargar las secuencias de imagenes de los
-	 * personajes
-	 * 
-	 * @retorno void
-	 */
-	public abstract void cargar(PApplet app);
 
 	/*
 	 * Método que se encargará de pintar las secuencias de imagenes de los
@@ -156,13 +149,12 @@ public abstract class Criatura implements Runnable {
 	 * @retorno void
 	 */
 	public void devuelvis() {
-		// abajo
-		try {
-			if (estado == 0 && posY >= app.height - 90) {
+		   // abajo
+			if (estado == 0 && posY >= 610) {
 				estado = 3;
 			}
 			// derecha
-			if (estado == 1 && posX >= app.width - 90) {
+			if (estado == 1 && posX >= 610) {
 				estado = 2;
 			}
 			// izquierda
@@ -173,29 +165,28 @@ public abstract class Criatura implements Runnable {
 			if (estado == 3 && posY <= 90) {
 				estado = 0;
 			}
-		} catch (Exception e) {
-			// TODO: no hacer esto....
-		}
 	}
 
+	/*
+	 * Método que se encarga de comprobar cuando las criaturas se acercan al 
+	 * elemento de la mitad del lienzo y se devuelvan para que no pasen encima de él
+	 */
 	public void devuelvisMitad() {
 		// abajo
-		if (estado == 0 && posX >= 300 && posX <= 412 && posY >= 322 && posY <= 412) {
+		if (estado == 0 && PApplet.dist(posX, posY, 350, 350) < 100) {
 			estado = 3;
 			System.out.println("Devuelvis abajo");
-		}
-		// derecha
-		if (estado == 1 && posX >= 300 && posX <= 412 && posY >= 322 && posY <= 412) {
+			// derecha
+		} else if (estado == 1 && PApplet.dist(posX, posY, 350, 350) < 100) {
 			estado = 2;
 			System.out.println("Devuelvis der");
-		}
-		// izquierda
-		if (estado == 2 && posX >= 300 && posX <= 412 && posY >= 322 && posY <= 412) {
+			// izquierda
+		} else if (estado == 2 && PApplet.dist(posX, posY, 350, 350) < 100) {
 			estado = 1;
 			System.out.println("Devuelvis izq");
 		}
 		// arriba
-		if (estado == 3 && posX >= 300 && posX <= 412 && posY >= 322 && posY <= 412) {
+		else if (estado == 3 && PApplet.dist(posX, posY, 350, 350) < 100) {
 			estado = 0;
 			System.out.println("Devuelvis arriba");
 		}
@@ -212,7 +203,7 @@ public abstract class Criatura implements Runnable {
 		this.c = c;
 		for (int i = 0; i < c.size(); i++) {
 			if (PApplet.dist(posX, posY, c.get(i).getPosX(), c.get(i).getPosY()) < 50) {
-				System.out.println("comioooooooo");
+				//System.out.println("comioooooooo");
 				fuerza += 1;
 				c.remove(i);
 				if (tam <= 56) {
@@ -256,7 +247,8 @@ public abstract class Criatura implements Runnable {
 	public boolean calcularDistanciaComida() {
 		return true;
 	}
-	// FINAL DE LA CLASE CRIATURA
+	
+	// GETTERS Y SETTERS
 
 	public int getPosX() {
 		return posX;
@@ -265,4 +257,6 @@ public abstract class Criatura implements Runnable {
 	public int getPosY() {
 		return posY;
 	}
+	
+	//----------FINAL DE LA CLASE CRIATURA-------//
 }
